@@ -3,9 +3,10 @@ import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
 import { ServicesPreview } from "@/components/sections/services-preview";
 import { InstagramFeed } from "@/components/sections/instagram-feed";
+import { ReviewsAndContact } from "@/components/sections/reviews-contact";
 import { FloatingContact } from "@/components/ui/floating-contact";
 import { motion } from "framer-motion";
-import { Star, MapPin, Clock, Sparkles } from "lucide-react";
+import { Star, Sparkles } from "lucide-react";
 import aboutImg from "@assets/Luxury_spa_treatment_room_for_beauty_salon_website_1763686140860.png";
 import detailImg from "@assets/Natural_aromatherapy_products_for_wellness_treatments_1763686140860.png";
 import { useTranslation } from "react-i18next";
@@ -94,32 +95,9 @@ export default function Home() {
         </section>
 
         <InstagramFeed />
+        
+        <ReviewsAndContact />
 
-        {/* Info Banner */}
-        <section className="py-16 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-primary-foreground/20">
-              <div className="flex flex-col items-center text-center p-4">
-                <Clock size={40} className="mb-4 opacity-80" />
-                <h3 className="text-xl font-serif font-semibold mb-2">{t('info.hours.title')}</h3>
-                <p className="opacity-90">{t('info.hours.week')}</p>
-                <p className="opacity-90">{t('info.hours.sunday')}</p>
-              </div>
-              <div className="flex flex-col items-center text-center p-4 group cursor-pointer" onClick={() => window.open("https://maps.app.goo.gl/OrzXqpzLIiSfEoekw", "_blank")}>
-                <MapPin size={40} className="mb-4 opacity-80 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif font-semibold mb-2">{t('info.location.title')}</h3>
-                <p className="opacity-90">{t('info.location.addr1')}</p>
-                <p className="opacity-90">{t('info.location.addr2')}</p>
-              </div>
-              <div className="flex flex-col items-center text-center p-4 group cursor-pointer" onClick={() => window.open("https://wa.me/905050719501", "_blank")}>
-                <Star size={40} className="mb-4 opacity-80 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif font-semibold mb-2">{t('info.book.title')}</h3>
-                <p className="opacity-90">{t('info.book.whatsapp')}</p>
-                <p className="opacity-90">+90 505 071 95 01</p>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />
