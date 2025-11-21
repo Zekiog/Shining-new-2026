@@ -84,40 +84,6 @@ export function ReviewsAndContact() {
 
       {/* Full Width Map Section */}
       <div className="w-full h-[500px] relative group">
-        {/* Overlay Card - Top Left */}
-        <div className="absolute top-8 left-4 md:left-12 z-10 bg-white/95 dark:bg-card/95 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-primary/10 max-w-sm">
-          <div className="flex items-center gap-3 mb-4">
-             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-serif font-bold text-xl">
-               S
-             </div>
-             <div>
-               <h3 className="text-xl font-serif font-bold text-primary">Shining Beauty</h3>
-               <p className="text-xs text-muted-foreground tracking-widest uppercase">& Wellness</p>
-             </div>
-          </div>
-          
-          <div className="space-y-4 text-sm text-muted-foreground">
-            <div className="flex items-start gap-3">
-              <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-              <p>Gazipaşa Rezidans, Cemalpaşa,<br/>60003 Sk Asmakat No:3,<br/>01120 Seyhan/Adana</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Phone className="w-5 h-5 text-primary shrink-0" />
-              <a href="tel:+905050719501" className="hover:text-primary transition-colors font-medium">+90 505 071 95 01</a>
-            </div>
-            <div className="flex items-center gap-3">
-              <Clock className="w-5 h-5 text-primary shrink-0" />
-              <p>Pzt - Cmt: 10:00 - 20:00</p>
-            </div>
-            <Button 
-              className="w-full mt-2 bg-primary text-primary-foreground hover:bg-primary/90"
-              onClick={() => window.open("https://maps.app.goo.gl/gMianxidIZlmPwKy1", "_blank")}
-            >
-              Yol Tarifi Al
-            </Button>
-          </div>
-        </div>
-
         <iframe 
           src="https://maps.google.com/maps?q=Shining+Beauty+Wellness+Gazipa%C5%9Fa+Rezidans+Adana&t=&z=15&ie=UTF8&iwloc=&output=embed"
           width="100%" 
