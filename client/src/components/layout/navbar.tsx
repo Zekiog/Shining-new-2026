@@ -1,12 +1,14 @@
 import { Link } from "wouter";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useTranslation } from "react-i18next";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { t, i18n } = useTranslation();
 
   // Handle scroll effect
   useEffect(() => {
@@ -33,12 +35,17 @@ export function Navbar() {
     }
   };
 
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "en" ? "tr" : "en";
+    i18n.changeLanguage(newLang);
+  };
+
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "#services" },
-    { name: "About", href: "#about" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contact", href: "#contact" },
+    { name: t('nav.home'), href: "/" },
+    { name: t('nav.services'), href: "#services" },
+    { name: t('nav.about'), href: "#about" },
+    { name: t('nav.blog'), href: "#blog" },
+    { name: t('nav.contact'), href: "#contact" },
   ];
 
   return (
@@ -68,21 +75,46 @@ export function Navbar() {
               {link.name}
             </a>
           ))}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="rounded-full hover:bg-primary/10 text-foreground"
+          
+          <div className="flex items-center gap-2 pl-4 border-l border-foreground/10">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleLanguage}
+              className="rounded-full hover:bg-primary/10 text-foreground w-10 h-10 font-medium"
+            >
+              {i18n.language === 'en' ? 'TR' : 'EN'}
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full hover:bg-primary/10 text-foreground"
+            >
+              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+            </Button>
+          </div>
+
+          <Button 
+            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6"
+            onClick={() => window.open("https://wa.me/905050719501", "_blank")}
           >
-            {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-          </Button>
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
-            Book Now
+            {t('nav.bookNow')}
           </Button>
         </div>
 
         {/* Mobile Nav */}
-        <div className="md:hidden flex items-center space-x-4">
+        <div className="md:hidden flex items-center space-x-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleLanguage}
+            className="rounded-full text-sm font-bold"
+          >
+            {i18n.language === 'en' ? 'TR' : 'EN'}
+          </Button>
+          
           <Button
             variant="ghost"
             size="icon"
@@ -109,8 +141,11 @@ export function Navbar() {
                     {link.name}
                   </a>
                 ))}
-                <Button className="w-full bg-primary text-primary-foreground rounded-full mt-4">
-                  Book Appointment
+                <Button 
+                  className="w-full bg-primary text-primary-foreground rounded-full mt-4"
+                  onClick={() => window.open("https://wa.me/905050719501", "_blank")}
+                >
+                  {t('nav.bookAppointment')}
                 </Button>
               </div>
             </SheetContent>

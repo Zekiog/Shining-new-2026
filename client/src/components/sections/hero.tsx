@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import heroBg from "@assets/Elegant_spa_massage_room_for_wellness_services_1763686140859.png";
 import textureBg from "@assets/generated_images/abstract_golden_waves_texture_for_background.png";
+import { useTranslation } from "react-i18next";
 
 export function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
       {/* Background Image */}
@@ -25,7 +28,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <span className="inline-block py-2 px-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white text-xs md:text-sm uppercase tracking-[0.2em] mb-6 font-sans shadow-xl">
-            Luxury Wellness in Adana
+            {t('hero.welcome')}
           </span>
         </motion.div>
 
@@ -35,8 +38,8 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg"
         >
-          Shining Beauty <br />
-          <span className="italic text-primary-foreground/90 font-light">& Wellness</span>
+          {t('hero.title')} <br />
+          <span className="italic text-primary-foreground/90 font-light">{t('hero.subtitle')}</span>
         </motion.h1>
 
         <motion.p
@@ -45,8 +48,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 font-light leading-relaxed drop-shadow-md"
         >
-          Experience the ultimate luxury spa treatments in Gazipaşa. 
-          Rejuvenate your body and soul with our exclusive wellness therapies.
+          {t('hero.description')}
         </motion.p>
 
         <motion.div
@@ -60,7 +62,7 @@ export function Hero() {
             className="bg-white text-black hover:bg-white/90 rounded-full px-8 py-6 text-lg font-medium min-w-[180px] border-0"
             onClick={() => window.open("https://wa.me/905050719501", "_blank")}
           >
-            Book Appointment
+            {t('hero.bookBtn')}
           </Button>
           <Button 
             size="lg" 
@@ -68,7 +70,7 @@ export function Hero() {
             className="border-white/50 text-white bg-transparent hover:bg-white/10 rounded-full px-8 py-6 text-lg font-medium min-w-[180px] backdrop-blur-sm"
             onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            View Services
+            {t('hero.servicesBtn')}
           </Button>
         </motion.div>
       </div>

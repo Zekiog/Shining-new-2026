@@ -1,6 +1,9 @@
 import { Facebook, Instagram, MessageCircle, Phone, MapPin, Mail } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-secondary/30 pt-20 pb-10 border-t border-primary/10">
       <div className="container mx-auto px-4">
@@ -11,7 +14,7 @@ export function Footer() {
               Shining<span className="text-foreground">Beauty</span>
             </h3>
             <p className="text-muted-foreground leading-relaxed text-sm">
-              A sanctuary of tranquility in the heart of Adana. Experience luxury treatments designed to rejuvenate your body and soul.
+              {t('footer.desc')}
             </p>
             <div className="flex space-x-4">
               <a 
@@ -46,36 +49,35 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-serif font-semibold mb-6 text-foreground">Explore</h4>
+            <h4 className="text-lg font-serif font-semibold mb-6 text-foreground">{t('footer.explore')}</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">Our Story</a></li>
-              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors block py-1">Services</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">Packages</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">Blog</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">Gift Cards</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">{t('footer.story')}</a></li>
+              <li><a href="#services" className="text-muted-foreground hover:text-primary transition-colors block py-1">{t('footer.services')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">{t('footer.packages')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">{t('nav.blog')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">{t('footer.giftCards')}</a></li>
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-serif font-semibold mb-6 text-foreground">Services</h4>
+            <h4 className="text-lg font-serif font-semibold mb-6 text-foreground">{t('footer.services')}</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">Massage Therapy</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">Facial Treatments</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">Nail Care</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">Body Scrubs</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">Wellness Packages</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">{t('services.massage.title')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">{t('services.skincare.title')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">{t('services.nails.title')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors block py-1">{t('services.wellness.title')}</a></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-serif font-semibold mb-6 text-foreground">Contact Us</h4>
+            <h4 className="text-lg font-serif font-semibold mb-6 text-foreground">{t('footer.contact')}</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start space-x-3 text-muted-foreground group">
                 <MapPin size={18} className="mt-1 shrink-0 text-primary group-hover:scale-110 transition-transform" />
                 <a href="https://maps.app.goo.gl/OrzXqpzLIiSfEoekw" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  Gazipasa Rezidans, Cemalpaşa,<br />60003 Sk Asmakat No:3,<br />01120 Seyhan/Adana, Türkiye
+                  Gazipaşa Rezidans, Cemalpaşa,<br />60003 Sk Asmakat No:3,<br />01120 Seyhan/Adana, Türkiye
                 </a>
               </li>
               <li className="flex items-center space-x-3 text-muted-foreground group">
@@ -91,7 +93,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-primary/10 pt-8 text-center text-muted-foreground text-xs">
-          <p>&copy; {new Date().getFullYear()} Shining Beauty & Wellness. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Shining Beauty & Wellness. {t('footer.rights')}</p>
         </div>
       </div>
     </footer>

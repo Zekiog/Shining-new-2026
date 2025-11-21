@@ -8,9 +8,11 @@ import {
 } from "@/components/ui/tooltip";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -50,7 +52,7 @@ export function FloatingContact() {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent side="left">
-                    <p>Visit Facebook</p>
+                    <p>{t('floating.facebook')}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -74,7 +76,7 @@ export function FloatingContact() {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent side="left">
-                    <p>Get Directions</p>
+                    <p>{t('floating.directions')}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -120,7 +122,7 @@ export function FloatingContact() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                Chat on WhatsApp
+                {t('floating.whatsapp')}
             </a>
          </motion.div>
       )}

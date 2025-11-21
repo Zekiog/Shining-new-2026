@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 // Using the new high-quality attached assets for the "feed"
 import img1 from "@assets/Luxury_spa_treatment_room_for_beauty_salon_website_1763686140860.png";
@@ -20,6 +21,8 @@ const feedItems = [
 ];
 
 export function InstagramFeed() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -28,10 +31,11 @@ export function InstagramFeed() {
             <Instagram size={24} />
           </div>
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-            Follow Our Journey
+            {t('instagram.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl">
-            Join our community on Instagram <a href="https://www.instagram.com/shining.beauty.wellness" target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">@shining.beauty.wellness</a> for daily inspiration, beauty tips, and exclusive offers.
+            {/* Using simple interpolation for the link since Trans component might be overkill for this mockup speed */}
+            {t('instagram.desc').replace('{{link}}', '')} <a href="https://www.instagram.com/shining.beauty.wellness" target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">@shining.beauty.wellness</a>
           </p>
         </div>
 
@@ -67,7 +71,7 @@ export function InstagramFeed() {
             className="rounded-full px-8 border-primary text-primary hover:bg-primary hover:text-white transition-all"
             onClick={() => window.open("https://www.instagram.com/shining.beauty.wellness", "_blank")}
           >
-            View Full Feed
+            {t('instagram.viewFeed')}
           </Button>
         </div>
       </div>
