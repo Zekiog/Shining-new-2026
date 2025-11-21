@@ -70,7 +70,7 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-gray-800 hover:bg-gray-900 text-white shadow-lg"
-                      onClick={() => window.open("https://www.google.com/maps/dir/63.4311752,10.4551504/Shining+Beauty+Wellness,+Gazipasa+Rezidans,+Cemalpa%C5%9Fa,+60003+Sk+Asmakat+No:3,+01120+Seyhan%2FAdana,+T%C3%BCrkiye/@48.2635228,1.2987541,4z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x15288fe1189465c1:0xa28b25b106cdb9c0!2m2!1d35.3248876!2d36.9998383?authuser=2&entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D", "_blank")}
+                      onClick={() => window.open("https://www.google.com/maps/place//data=!4m2!3m1!1s0x15288fe1189465c1:0xa28b25b106cdb9c0?sa=X&ved=1t:8290&ictx=111", "_blank")}
                     >
                       <MapPin className="h-5 w-5" />
                     </Button>
