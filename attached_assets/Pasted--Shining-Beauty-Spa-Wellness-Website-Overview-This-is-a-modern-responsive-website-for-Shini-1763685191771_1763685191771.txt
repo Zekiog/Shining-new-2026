@@ -1,0 +1,114 @@
+# Shining Beauty Spa & Wellness Website
+
+## Overview
+
+This is a modern, responsive website for Shining Beauty, a luxury spa and wellness center in Adana, Turkey. The site serves as a digital storefront showcasing services (spa massage, skincare, body treatments, nail art), providing booking capabilities, displaying Instagram content, and offering informational blog posts. Built with vanilla HTML, CSS, and JavaScript, the site emphasizes visual elegance, SEO optimization, and user-friendly navigation with full dark mode support.
+
+**Latest Update (November 21, 2025):** The website has been enhanced by merging two different structures, combining the best features of both versions. All images now use local assets, dark mode toggle functionality has been implemented, and the site is production-ready.
+
+## User Preferences
+
+Preferred communication style: Simple, everyday language.
+
+## System Architecture
+
+### Frontend Architecture
+
+**Technology Stack:** The application uses vanilla HTML5, CSS3, and JavaScript without any frameworks. This decision provides maximum simplicity and performance for a static content website.
+
+**Styling Approach:** The project employs a hybrid CSS strategy:
+- Custom CSS with CSS Custom Properties (CSS variables) for theming
+- Tailwind CSS utility classes (via output.css) for rapid styling
+- Design system based on semantic color tokens that map to primitive colors
+
+**Rationale:** This approach balances design consistency (through the token system) with development speed (Tailwind utilities) while maintaining full control over custom components.
+
+**Theme System:** A comprehensive dark/light mode implementation using CSS custom properties:
+- Automatic detection via `prefers-color-scheme` media query
+- Manual toggle with localStorage persistence
+- Color tokens organized into primitive (base colors) and semantic (contextual) layers
+- Separate background color variants for different sections
+
+**Component Structure:**
+- Header with logo, navigation, and theme toggle
+- Hero section with video background
+- Service cards with detailed information (benefits, pricing, packages, contraindications)
+- Instagram feed integration
+- Blog section
+- Contact/appointment forms
+- Footer with social media links
+
+**Responsive Design:** Mobile-first approach using CSS media queries and flexible grid layouts.
+
+### Data Management
+
+**Service Data:** Stored as JavaScript objects in `app.js`, structured with:
+- Service metadata (ID, name, description, images)
+- Pricing information (range and specific package prices)
+- Benefits and contraindications arrays
+- Duration specifications
+
+**Rationale:** For a spa website with relatively static service offerings, client-side data structures provide immediate load times without requiring a backend. Future migration to a CMS or database would be straightforward given the structured data format.
+
+**Content Organization:** Multi-language ready infrastructure (Turkish primary, English support) suggests planned internationalization.
+
+### User Experience Features
+
+**Dark Mode Implementation:**
+- System preference detection
+- User preference persistence via localStorage
+- Smooth theme transitions
+- Custom toggle button with sun/moon icons
+
+**SEO Optimization:**
+- Comprehensive meta tags (description, keywords, Open Graph)
+- Semantic HTML structure
+- Favicon and branding assets
+- Optimized for domain: shining.icu (previously shinings.pw)
+
+**Social Integration:**
+- Instagram Reels feed with custom cover images
+- Direct social media links (Instagram, WhatsApp, Facebook)
+- Live chat capability
+
+**Performance Considerations:**
+- Preconnect hints for Google Fonts
+- Lazy-loaded external resources
+- Minimal JavaScript footprint
+- Static asset optimization
+
+## External Dependencies
+
+### Font Services
+- **Google Fonts:** Playfair Display (serif, luxury feel), Poppins (sans-serif, modern), Montserrat, Pacifico
+- **Font Awesome:** Icon library for social media and UI icons (referenced but not visible in provided files)
+
+### Third-Party Integrations
+- **Google Maps:** Embedded map for location display
+- **Instagram:** Direct links to Instagram profile and Reels content
+- **WhatsApp:** Click-to-chat functionality
+- **Facebook:** Social media linking
+
+### Styling Frameworks
+- **Tailwind CSS:** Utility-first CSS framework (compiled to output.css)
+- **Inter UI:** Additional font option from rsms.me
+
+### Design Resources
+- Custom logo and branding assets (/images/shining-logo.png)
+- Instagram Reel cover images (/images/reel2.png, reel3.png)
+- Service imagery stored in /images/ directory:
+  - spa-hero.png (Spa massage services)
+  - skincare.png (Skin care services)
+  - nail-art.png (Nail art services)
+  - wellness.png (Body care and wellness services)
+- All images are locally hosted for optimal performance
+
+### Deployment Platforms
+- Optimized for Netlify or GitHub Pages
+- Static site hosting compatible
+- No server-side requirements
+
+### Browser APIs
+- localStorage API for theme preference persistence
+- Media Query API for dark mode detection
+- DOM Manipulation via vanilla JavaScript
