@@ -2,13 +2,18 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
 import { ServicesPreview } from "@/components/sections/services-preview";
+import { InstagramFeed } from "@/components/sections/instagram-feed";
+import { FloatingContact } from "@/components/ui/floating-contact";
 import { motion } from "framer-motion";
 import { Star, MapPin, Clock, Sparkles } from "lucide-react";
+import aboutImg from "@assets/Luxury_spa_treatment_room_for_beauty_salon_website_1763686140860.png";
+import detailImg from "@assets/Natural_aromatherapy_products_for_wellness_treatments_1763686140860.png";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background font-sans selection:bg-primary/20">
       <Navbar />
+      <FloatingContact />
       
       <main>
         <Hero />
@@ -25,18 +30,17 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="aspect-square rounded-2xl overflow-hidden bg-neutral-200 relative z-10">
-                   {/* Using one of the generated images as a placeholder for About image */}
+                <div className="aspect-square rounded-2xl overflow-hidden bg-neutral-200 relative z-10 shadow-2xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=2070&auto=format&fit=crop" 
-                    alt="Spa Interior" 
+                    src={aboutImg} 
+                    alt="Shining Beauty Spa Interior" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute -bottom-8 -right-8 w-2/3 aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-300 z-20 border-8 border-background shadow-xl">
                    <img 
-                    src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop" 
-                    alt="Massage Detail" 
+                    src={detailImg}
+                    alt="Aromatherapy Details" 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -55,7 +59,7 @@ export default function Home() {
                   A Sanctuary for Body & Soul
                 </h2>
                 <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                  Welcome to Shining Beauty, where luxury meets wellness. Established in the heart of Adana, we are dedicated to providing world-class spa and beauty services in a serene environment.
+                  Welcome to Shining Beauty & Wellness, where luxury meets wellness. Located at Gazipaşa Rezidans in Cemalpaşa, we provide world-class spa and beauty services in a serene environment.
                 </p>
                 <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                   Our expert therapists combine ancient techniques with modern skincare innovations to deliver treatments that not only rejuvenate your appearance but also restore your inner balance.
@@ -86,6 +90,8 @@ export default function Home() {
           </div>
         </section>
 
+        <InstagramFeed />
+
         {/* Info Banner */}
         <section className="py-16 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4">
@@ -96,17 +102,17 @@ export default function Home() {
                 <p className="opacity-90">Mon - Sat: 10:00 - 20:00</p>
                 <p className="opacity-90">Sunday: Closed</p>
               </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <MapPin size={40} className="mb-4 opacity-80" />
+              <div className="flex flex-col items-center text-center p-4 group cursor-pointer" onClick={() => window.open("https://maps.app.goo.gl/OrzXqpzLIiSfEoekw", "_blank")}>
+                <MapPin size={40} className="mb-4 opacity-80 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-serif font-semibold mb-2">Location</h3>
-                <p className="opacity-90">Turgut Özal Blv. No:123</p>
-                <p className="opacity-90">Çukurova, Adana</p>
+                <p className="opacity-90">Gazipaşa Rezidans, Cemalpaşa</p>
+                <p className="opacity-90">Seyhan/Adana, Türkiye</p>
               </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <Star size={40} className="mb-4 opacity-80" />
+              <div className="flex flex-col items-center text-center p-4 group cursor-pointer" onClick={() => window.open("https://wa.me/905050719501", "_blank")}>
+                <Star size={40} className="mb-4 opacity-80 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-serif font-semibold mb-2">Book Online</h3>
-                <p className="opacity-90">Easy scheduling for</p>
-                <p className="opacity-90">all appointments</p>
+                <p className="opacity-90">WhatsApp Appointment</p>
+                <p className="opacity-90">+90 505 071 95 01</p>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import heroBg from "@assets/generated_images/luxury_spa_massage_room_with_ambient_lighting.png";
+import heroBg from "@assets/Elegant_spa_massage_room_for_wellness_services_1763686140859.png";
 import textureBg from "@assets/generated_images/abstract_golden_waves_texture_for_background.png";
 
 export function Hero() {
@@ -10,11 +10,11 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
         <img
           src={heroBg}
-          alt="Luxury Spa Ambience"
+          alt="Shining Beauty Spa Ambience"
           className="w-full h-full object-cover"
         />
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-background/90" />
       </div>
 
       {/* Content */}
@@ -24,8 +24,8 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span className="inline-block py-1 px-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm text-white text-sm uppercase tracking-widest mb-6 font-sans">
-            Welcome to Shining Beauty
+          <span className="inline-block py-2 px-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white text-xs md:text-sm uppercase tracking-[0.2em] mb-6 font-sans shadow-xl">
+            Luxury Wellness in Adana
           </span>
         </motion.div>
 
@@ -33,19 +33,19 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 leading-tight"
+          className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg"
         >
-          Discover Your <br />
-          <span className="italic text-primary-foreground font-light">Inner Radiance</span>
+          Shining Beauty <br />
+          <span className="italic text-primary-foreground/90 font-light">& Wellness</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 font-light leading-relaxed"
+          className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 font-light leading-relaxed drop-shadow-md"
         >
-          Experience the ultimate luxury spa treatments in Adana. 
+          Experience the ultimate luxury spa treatments in Gazipaşa. 
           Rejuvenate your body and soul with our exclusive wellness therapies.
         </motion.p>
 
@@ -57,14 +57,16 @@ export function Hero() {
         >
           <Button 
             size="lg" 
-            className="bg-white text-black hover:bg-white/90 rounded-full px-8 py-6 text-lg font-medium min-w-[180px]"
+            className="bg-white text-black hover:bg-white/90 rounded-full px-8 py-6 text-lg font-medium min-w-[180px] border-0"
+            onClick={() => window.open("https://wa.me/905050719501", "_blank")}
           >
             Book Appointment
           </Button>
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-white text-white hover:bg-white/20 rounded-full px-8 py-6 text-lg font-medium min-w-[180px]"
+            className="border-white/50 text-white bg-transparent hover:bg-white/10 rounded-full px-8 py-6 text-lg font-medium min-w-[180px] backdrop-blur-sm"
+            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
           >
             View Services
           </Button>
@@ -73,7 +75,7 @@ export function Hero() {
 
       {/* Texture Overlay for Luxury Feel */}
       <div 
-        className="absolute bottom-0 left-0 right-0 h-32 opacity-30 pointer-events-none mix-blend-soft-light"
+        className="absolute bottom-0 left-0 right-0 h-32 opacity-20 pointer-events-none mix-blend-soft-light"
         style={{
           backgroundImage: `url(${textureBg})`,
           backgroundSize: 'cover',

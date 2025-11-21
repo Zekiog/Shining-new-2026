@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Flower2, Palette, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-// Images
-import massageImg from "@assets/generated_images/luxury_spa_massage_room_with_ambient_lighting.png";
-import facialImg from "@assets/generated_images/woman_receiving_a_facial_skincare_treatment.png";
-import nailsImg from "@assets/generated_images/artistic_nail_art_and_manicure_setup.png";
-import wellnessImg from "@assets/generated_images/wellness_body_treatment_with_hot_stones.png";
+// Updated with high-quality attached assets
+import massageImg from "@assets/Professional_body_treatment_and_wellness_service_1763686140860.png";
+import facialImg from "@assets/Professional_facial_treatment_and_skincare_application_1763686140861.png";
+import nailsImg from "@assets/Professional_nail_art_service_for_beauty_salon_1763686140861.png";
+import wellnessImg from "@assets/Professional_body_care_and_exfoliation_treatment_1763686140860.png";
 
 const services = [
   {
@@ -73,11 +73,11 @@ export function ServicesPreview() {
                   alt={service.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80" />
                 
                 {/* Overlay Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <service.icon className="w-8 h-8 mb-3 text-primary-foreground/80" />
+                  <service.icon className="w-8 h-8 mb-3 text-primary-foreground/90" />
                   <h3 className="text-2xl font-serif font-semibold mb-2">{service.title}</h3>
                   <p className="text-white/80 text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">
                     {service.description}
