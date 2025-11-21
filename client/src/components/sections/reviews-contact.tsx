@@ -111,7 +111,7 @@ export function ReviewsAndContact() {
             </div>
             <Button 
               className="w-full mt-2 bg-primary text-primary-foreground hover:bg-primary/90"
-              onClick={() => window.open("https://maps.app.goo.gl/OrzXqpzLIiSfEoekw", "_blank")}
+              onClick={() => window.open("https://maps.app.goo.gl/gMianxidIZlmPwKy1", "_blank")}
             >
               Yol Tarifi Al
             </Button>
@@ -119,7 +119,7 @@ export function ReviewsAndContact() {
         </div>
 
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3185.653794788584!2d35.3224463!3d37.0181687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15288f005b7b1dfb%3A0x8c0d4d0f9e7a6e1c!2sGazipa%C5%9Fa%20Rezidans!5e0!3m2!1str!2str!4v1732190000000!5m2!1str!2str" 
+          src="https://maps.google.com/maps?q=Shining+Beauty+Wellness+Gazipa%C5%9Fa+Rezidans+Adana&t=&z=15&ie=UTF8&iwloc=&output=embed"
           width="100%" 
           height="100%" 
           style={{ border: 0, filter: 'grayscale(0.2)' }} 

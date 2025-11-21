@@ -70,7 +70,7 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-gray-800 hover:bg-gray-900 text-white shadow-lg"
-                      onClick={() => window.open("https://maps.app.goo.gl/OrzXqpzLIiSfEoekw", "_blank")}
+                      onClick={() => window.open("https://maps.app.goo.gl/gMianxidIZlmPwKy1", "_blank")}
                     >
                       <MapPin className="h-5 w-5" />
                     </Button>
