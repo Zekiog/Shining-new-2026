@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Star, Quote, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { ContactForm } from "./contact-form";
 
 const reviews = [
   {
@@ -79,6 +80,21 @@ export function ReviewsAndContact() {
           >
             Tüm Yorumları Oku
           </Button>
+        </div>
+      </div>
+
+      {/* Contact Form Section */}
+      <div className="container mx-auto px-4 py-24">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
+              Bize Ulaşın
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Sorularınız veya randevu talebiniz için lütfen iletişim formunu doldurunuz.
+            </p>
+          </div>
+          <ContactForm />
         </div>
       </div>
 
