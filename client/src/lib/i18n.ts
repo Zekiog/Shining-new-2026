@@ -93,6 +93,42 @@ const resources = {
         facebook: "Visit Facebook",
         directions: "Get Directions",
         whatsapp: "Chat on WhatsApp"
+      },
+      contactForm: {
+        title: "Book via WhatsApp",
+        subtitle: "Fill in the form below. We'll open WhatsApp with your details pre-filled so you just hit Send.",
+        name: "Name",
+        namePlaceholder: "Your full name",
+        phone: "Phone",
+        service: "Service",
+        preferredTime: "Preferred date & time",
+        preferredTimePlaceholder: "e.g. Tuesday 16:00",
+        note: "Notes (optional)",
+        notePlaceholder: "Allergies, preferences, therapist requests...",
+        consent: "I agree that my information will be shared via WhatsApp to handle this appointment request.",
+        consentRequired: "Please accept the consent checkbox to continue.",
+        requiredFields: "Name and phone are required.",
+        submitting: "Opening WhatsApp...",
+        submit: "Send booking request via WhatsApp"
+      },
+      cookieBanner: {
+        title: "Cookies & analytics",
+        description: "We use cookies only after you consent. Analytics cookies help us understand which treatments people search for so we can improve the site. You can change this any time.",
+        customize: "Customize",
+        customizeLegend: "Cookie categories",
+        savePreferences: "Save preferences",
+        reject: "Reject all",
+        accept: "Accept all",
+        settings: "Privacy preferences",
+        analyticsLabel: "Analytics",
+        analyticsHint: "Anonymous usage data via Google Analytics (page views, WhatsApp button clicks).",
+        marketingLabel: "Marketing",
+        marketingHint: "Personalized ads and remarketing via Google Ads."
+      },
+      reviews: {
+        eyebrow: "Guest stories",
+        title: "What our guests say",
+        subtitle: "Curated reviews from visitors who shared written permission to feature their feedback."
       }
     }
   },
@@ -187,6 +223,42 @@ const resources = {
         facebook: "Facebook'ta Ziyaret Et",
         directions: "Yol Tarifi Al",
         whatsapp: "WhatsApp'ta Sohbet Et"
+      },
+      contactForm: {
+        title: "WhatsApp'tan Randevu Talebi",
+        subtitle: "Aşağıdaki formu doldurun; bilgileriniz WhatsApp'a hazır mesaj olarak gönderilecek, siz sadece Gönder'e basacaksınız.",
+        name: "Ad Soyad",
+        namePlaceholder: "Adınız ve soyadınız",
+        phone: "Telefon",
+        service: "Hizmet",
+        preferredTime: "Tercih edilen tarih ve saat",
+        preferredTimePlaceholder: "örn. Salı 16:00",
+        note: "Not (opsiyonel)",
+        notePlaceholder: "Alerjiler, tercihler, terapist isteği...",
+        consent: "Bilgilerimin randevu talebim için WhatsApp üzerinden paylaşılmasını kabul ediyorum.",
+        consentRequired: "Devam etmek için onay kutusunu işaretleyin.",
+        requiredFields: "Ad ve telefon zorunludur.",
+        submitting: "WhatsApp açılıyor...",
+        submit: "WhatsApp'tan Randevu Talebi Oluştur"
+      },
+      cookieBanner: {
+        title: "Çerezler ve analitik",
+        description: "Çerezleri yalnızca sizin onayınızla kullanıyoruz. Analitik çerezleri ziyaretçilerin hangi hizmetleri aradığını anlamamıza ve siteyi iyileştirmemize yardımcı olur. Bu kararı istediğiniz zaman değiştirebilirsiniz.",
+        customize: "Özelleştir",
+        customizeLegend: "Çerez kategorileri",
+        savePreferences: "Tercihleri kaydet",
+        reject: "Tümünü reddet",
+        accept: "Tümünü kabul et",
+        settings: "Gizlilik tercihleri",
+        analyticsLabel: "Analitik",
+        analyticsHint: "Google Analytics üzerinden anonim kullanım verileri (sayfa görüntüleme, WhatsApp buton tıklamaları).",
+        marketingLabel: "Pazarlama",
+        marketingHint: "Google Ads üzerinden kişiselleştirilmiş reklamlar ve yeniden pazarlama."
+      },
+      reviews: {
+        eyebrow: "Misafir yorumları",
+        title: "Misafirlerimiz ne diyor?",
+        subtitle: "Yayın için yazılı izin veren ziyaretçilerimizin seçilmiş yorumları."
       }
     }
   }

@@ -3,6 +3,11 @@ import { motion } from "framer-motion";
 import heroBg from "@assets/Elegant_spa_massage_room_for_wellness_services_1763686140859.png";
 import textureBg from "@assets/generated_images/abstract_golden_waves_texture_for_background.png";
 import { useTranslation } from "react-i18next";
+import {
+  buildQuickWhatsAppUrl,
+  CTA_SOURCE,
+  openWhatsApp,
+} from "@/lib/booking";
 
 export function Hero() {
   const { t } = useTranslation();
@@ -57,10 +62,10 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="bg-white text-black hover:bg-white/90 rounded-full px-8 py-6 text-lg font-medium min-w-[180px] border-0"
-            onClick={() => window.open("https://wa.me/905050719501", "_blank")}
+            onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.HERO), CTA_SOURCE.HERO)}
           >
             {t('hero.bookBtn')}
           </Button>

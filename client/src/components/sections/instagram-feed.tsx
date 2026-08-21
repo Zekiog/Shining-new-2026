@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { business } from "@/lib/business";
 
 // Using the new high-quality attached assets for the "feed"
 import img1 from "@assets/Luxury_spa_treatment_room_for_beauty_salon_website_1763686140860.png";
@@ -35,7 +36,7 @@ export function InstagramFeed() {
           </h2>
           <p className="text-muted-foreground max-w-2xl">
             {/* Using simple interpolation for the link since Trans component might be overkill for this mockup speed */}
-            {t('instagram.desc').replace('{{link}}', '')} <a href="https://www.instagram.com/shining.beauty.wellness" target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">@shining.beauty.wellness</a>
+            {t('instagram.desc').replace('{{link}}', '')} <a href={business.socials.instagramUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">{business.socials.instagramHandle}</a>
           </p>
         </div>
 
@@ -43,7 +44,7 @@ export function InstagramFeed() {
           {feedItems.map((item, index) => (
             <motion.a
               key={item.id}
-              href="https://www.instagram.com/shining.beauty.wellness"
+              href={business.socials.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative aspect-square overflow-hidden bg-muted block"
@@ -69,7 +70,7 @@ export function InstagramFeed() {
             variant="outline" 
             size="lg" 
             className="rounded-full px-8 border-primary text-primary hover:bg-primary hover:text-white transition-all"
-            onClick={() => window.open("https://www.instagram.com/shining.beauty.wellness", "_blank")}
+            onClick={() => window.open(business.socials.instagramUrl, "_blank", "noopener,noreferrer")}
           >
             {t('instagram.viewFeed')}
           </Button>

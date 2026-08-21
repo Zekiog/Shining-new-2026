@@ -1,5 +1,8 @@
 import { Facebook, Instagram, MessageCircle, Phone, MapPin, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { buildQuickWhatsAppUrl, CTA_SOURCE } from "@/lib/booking";
+import { trackOutboundClick, trackWhatsAppClick } from "@/lib/analytics";
+import { business } from "@/lib/business";
 
 export function Footer() {
   const { t } = useTranslation();
@@ -17,9 +20,9 @@ export function Footer() {
               {t('footer.desc')}
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="https://www.instagram.com/shining.beauty.wellness" 
-                target="_blank" 
+              <a
+                href={business.socials.instagramUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground hover:text-white hover:bg-gradient-to-tr hover:from-orange-500 hover:to-purple-600 transition-all shadow-sm"
                 aria-label="Instagram"
@@ -35,10 +38,14 @@ export function Footer() {
               >
                 <Facebook size={20} />
               </a>
-              <a 
-                href="https://wa.me/905050719501" 
-                target="_blank" 
+              <a
+                href={buildQuickWhatsAppUrl(CTA_SOURCE.FOOTER)}
+                target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  trackWhatsAppClick(CTA_SOURCE.FOOTER, { ctaLabel: "footer-icon" });
+                  trackOutboundClick("wa.me", "external");
+                }}
                 className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground hover:text-white hover:bg-green-500 transition-all shadow-sm"
                 aria-label="WhatsApp"
               >
