@@ -18,4 +18,12 @@ export const business = {
     closes: "19:00",
     closedDay: "Sunday",
   },
+  /**
+   * Verified social profile handles. Single source of truth — update
+   * here when the business changes a username, not in every section.
+   */
+  socials: {
+    instagramHandle: "@shining.beauty.wellness",
+    instagramUrl: "https://www.instagram.com/shining.beauty.wellness",
+  },
 } as const;

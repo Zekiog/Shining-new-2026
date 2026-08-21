@@ -14,6 +14,7 @@ import {
   CTA_SOURCE,
   openWhatsApp,
 } from "@/lib/booking";
+import { business } from "@/lib/business";
 
 export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
@@ -86,7 +87,7 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-gradient-to-tr from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 text-white shadow-lg"
-                      onClick={() => window.open("https://www.instagram.com/shining.beauty.wellness", "_blank")}
+                      onClick={() => window.open(business.socials.instagramUrl, "_blank", "noopener,noreferrer")}
                     >
                       <InstagramIcon className="h-5 w-5" />
                     </Button>
