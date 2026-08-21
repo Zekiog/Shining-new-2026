@@ -58,6 +58,16 @@ jobs:
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: '20.x'
+          cache: npm
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: TypeScript validation
+        run: npm run check
+
+      - name: Production build validation
+        run: npm run build
 
       - name: Resolve linters
         id: linters
