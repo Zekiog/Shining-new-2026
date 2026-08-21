@@ -38,7 +38,7 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg"
-                      onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.FLOATING))}
+                      onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.FLOATING), CTA_SOURCE.FLOATING)}
                     >
                       <MessageCircle className="h-5 w-5" />
                     </Button>

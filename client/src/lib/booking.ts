@@ -12,7 +12,11 @@
  *  - URL-encode messages safely (Turkish characters, emoji, line breaks).
  *  - Keep booking flow a pure client-side redirect -> zero backend load,
  *    zero spam surface, zero PII storage.
+ *  - Emit `whatsapp_click` GA4 events with the source label so the
+ *    business can attribute conversions in the analytics dashboard.
  */
+
+import { trackWhatsAppClick } from "./analytics";
 
 export const WHATSAPP_NUMBER_E164 = "905050719501";
 export const WHATSAPP_DISPLAY = "+90 505 071 95 01";
@@ -104,9 +108,17 @@ export function buildQuickWhatsAppUrl(source: CtaSource, extra?: string): string
  * Open a WhatsApp URL in a new tab with `noopener` + `noreferrer`.
  *
  * Falls back to direct navigation if popups are blocked.
+ *
+ * `source` should be a `CtaSource` (or any stable string) and is
+ * forwarded to GA4 as the `source` parameter of the `whatsapp_click`
+ * conversion event. No-op when consent is denied or GA4 is not
+ * configured.
  */
-export function openWhatsApp(url: string): void {
+export function openWhatsApp(url: string, source?: CtaSource): void {
   if (typeof window === "undefined") return;
+  trackWhatsAppClick(source ?? "direct", {
+    ctaLabel: source,
+  });
   const win = window.open(url, "_blank", "noopener,noreferrer");
   if (!win) {
     window.location.href = url;

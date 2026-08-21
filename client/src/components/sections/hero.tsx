@@ -65,7 +65,7 @@ export function Hero() {
           <Button
             size="lg"
             className="bg-white text-black hover:bg-white/90 rounded-full px-8 py-6 text-lg font-medium min-w-[180px] border-0"
-            onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.HERO))}
+            onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.HERO), CTA_SOURCE.HERO)}
           >
             {t('hero.bookBtn')}
           </Button>

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MessageSquare } from "lucide-react";
@@ -9,6 +9,10 @@ import {
   WHATSAPP_DISPLAY,
   CTA_SOURCE,
 } from "@/lib/booking";
+import {
+  trackFormEvent,
+  trackServiceSelect,
+} from "@/lib/analytics";
 
 /**
  * Contact form -> WhatsApp booking flow.
@@ -46,7 +50,33 @@ export function ContactForm() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "service") {
+      trackServiceSelect(value);
+    }
   };
+
+  // Track `form_view` once the form becomes visible. Uses
+  // IntersectionObserver so it fires on scroll-to rather than on mount,
+  // which is what we care about measuring.
+  const sectionRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            trackFormEvent("form_view");
+            observer.disconnect();
+            return;
+          }
+        }
+      },
+      { threshold: 0.25 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,15 +85,20 @@ export function ContactForm() {
     // Honeypot: if filled, the visitor is almost certainly a bot.
     // Silently succeed without opening WhatsApp.
     if (formData.website.trim().length > 0) {
+      trackFormEvent("honeypot_blocked");
       formRef.current?.reset();
       return;
     }
 
     if (!consent) {
+      trackFormEvent("consent_blocked");
       setError(t("contactForm.consentRequired"));
       return;
     }
     if (!formData.name.trim() || !formData.phone.trim()) {
+      trackFormEvent("form_submit_attempt", {
+        validationError: "missing_required_fields",
+      });
       setError(t("contactForm.requiredFields"));
       return;
     }
@@ -78,7 +113,8 @@ export function ContactForm() {
         preferredTime: formData.preferredTime || undefined,
         note: formData.note || undefined,
       });
-      openWhatsApp(url);
+      trackFormEvent("form_submit_success", { service: formData.service });
+      openWhatsApp(url, CTA_SOURCE.CONTACT_FORM);
     } finally {
       requestAnimationFrame(() => {
         setIsSubmitting(false);
@@ -95,7 +131,7 @@ export function ContactForm() {
   };
 
   return (
-    <div className="bg-card p-8 rounded-2xl shadow-sm border border-border/50 relative">
+    <div ref={sectionRef} className="bg-card p-8 rounded-2xl shadow-sm border border-border/50 relative">
       <h3 className="text-2xl font-serif font-bold text-foreground mb-2">
         {t("contactForm.title")}
       </h3>

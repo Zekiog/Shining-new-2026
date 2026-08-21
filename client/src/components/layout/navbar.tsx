@@ -103,7 +103,7 @@ export function Navbar() {
 
           <Button
             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6"
-            onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.NAVBAR_DESKTOP))}
+            onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.NAVBAR_DESKTOP), CTA_SOURCE.NAVBAR_DESKTOP)}
           >
             {t('nav.bookNow')}
           </Button>
@@ -148,7 +148,7 @@ export function Navbar() {
                 ))}
                 <Button
                   className="w-full bg-primary text-primary-foreground rounded-full mt-4"
-                  onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.NAVBAR_MOBILE))}
+                  onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.NAVBAR_MOBILE), CTA_SOURCE.NAVBAR_MOBILE)}
                 >
                   {t('nav.bookAppointment')}
                 </Button>
