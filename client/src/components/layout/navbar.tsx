@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTranslation } from "react-i18next";
+import {
+  buildQuickWhatsAppUrl,
+  CTA_SOURCE,
+  openWhatsApp,
+} from "@/lib/booking";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -96,9 +101,9 @@ export function Navbar() {
             </Button>
           </div>
 
-          <Button 
+          <Button
             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6"
-            onClick={() => window.open("https://wa.me/905050719501", "_blank")}
+            onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.NAVBAR_DESKTOP))}
           >
             {t('nav.bookNow')}
           </Button>
@@ -141,9 +146,9 @@ export function Navbar() {
                     {link.name}
                   </a>
                 ))}
-                <Button 
+                <Button
                   className="w-full bg-primary text-primary-foreground rounded-full mt-4"
-                  onClick={() => window.open("https://wa.me/905050719501", "_blank")}
+                  onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.NAVBAR_MOBILE))}
                 >
                   {t('nav.bookAppointment')}
                 </Button>

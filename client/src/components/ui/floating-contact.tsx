@@ -1,4 +1,4 @@
-import { Phone, MapPin, Share2, Instagram as InstagramIcon, Facebook } from "lucide-react";
+import { Phone, MapPin, Share2, Instagram as InstagramIcon, Facebook, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -9,6 +9,11 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import {
+  buildQuickWhatsAppUrl,
+  CTA_SOURCE,
+  openWhatsApp,
+} from "@/lib/booking";
 
 export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +37,14 @@ export function FloatingContact() {
                   <TooltipTrigger asChild>
                     <Button
                       size="icon"
-                      className="h-12 w-12 rounded-full bg-gradient-to-tr from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 text-white shadow-lg"
-                      onClick={() => window.open("https://www.instagram.com/shining.beauty.wellness", "_blank")}
+                      className="h-12 w-12 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg"
+                      onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.FLOATING))}
                     >
-                      <InstagramIcon className="h-5 w-5" />
+                      <MessageCircle className="h-5 w-5" />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent side="left">
-                    <p>Instagram</p>
+                    <p>{t('floating.whatsapp')}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -74,6 +79,30 @@ export function FloatingContact() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.8 }}
               transition={{ duration: 0.2, delay: 0.1 }}
+            >
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      size="icon"
+                      className="h-12 w-12 rounded-full bg-gradient-to-tr from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 text-white shadow-lg"
+                      onClick={() => window.open("https://www.instagram.com/shining.beauty.wellness", "_blank")}
+                    >
+                      <InstagramIcon className="h-5 w-5" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="left">
+                    <p>Instagram</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.8 }}
+              transition={{ duration: 0.2, delay: 0.15 }}
             >
               <TooltipProvider>
                 <Tooltip>

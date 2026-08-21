@@ -93,6 +93,23 @@ const resources = {
         facebook: "Visit Facebook",
         directions: "Get Directions",
         whatsapp: "Chat on WhatsApp"
+      },
+      contactForm: {
+        title: "Book via WhatsApp",
+        subtitle: "Fill in the form below. We'll open WhatsApp with your details pre-filled so you just hit Send.",
+        name: "Name",
+        namePlaceholder: "Your full name",
+        phone: "Phone",
+        service: "Service",
+        preferredTime: "Preferred date & time",
+        preferredTimePlaceholder: "e.g. Tuesday 16:00",
+        note: "Notes (optional)",
+        notePlaceholder: "Allergies, preferences, therapist requests...",
+        consent: "I agree that my information will be shared via WhatsApp to handle this appointment request.",
+        consentRequired: "Please accept the consent checkbox to continue.",
+        requiredFields: "Name and phone are required.",
+        submitting: "Opening WhatsApp...",
+        submit: "Send booking request via WhatsApp"
       }
     }
   },
@@ -187,6 +204,23 @@ const resources = {
         facebook: "Facebook'ta Ziyaret Et",
         directions: "Yol Tarifi Al",
         whatsapp: "WhatsApp'ta Sohbet Et"
+      },
+      contactForm: {
+        title: "WhatsApp'tan Randevu Talebi",
+        subtitle: "Aşağıdaki formu doldurun; bilgileriniz WhatsApp'a hazır mesaj olarak gönderilecek, siz sadece Gönder'e basacaksınız.",
+        name: "Ad Soyad",
+        namePlaceholder: "Adınız ve soyadınız",
+        phone: "Telefon",
+        service: "Hizmet",
+        preferredTime: "Tercih edilen tarih ve saat",
+        preferredTimePlaceholder: "örn. Salı 16:00",
+        note: "Not (opsiyonel)",
+        notePlaceholder: "Alerjiler, tercihler, terapist isteği...",
+        consent: "Bilgilerimin randevu talebim için WhatsApp üzerinden paylaşılmasını kabul ediyorum.",
+        consentRequired: "Devam etmek için onay kutusunu işaretleyin.",
+        requiredFields: "Ad ve telefon zorunludur.",
+        submitting: "WhatsApp açılıyor...",
+        submit: "WhatsApp'tan Randevu Talebi Oluştur"
       }
     }
   }
