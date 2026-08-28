@@ -1,6 +1,24 @@
-import { createRoot } from "react-dom/client";
-import App from "./App";
-import "./index.css";
-import "./lib/i18n";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { initAnalytics } from './lib/analytics';
+import './index.css';
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Minimal, safe bootstrap: analytics errors must never block render
+try {
+  initAnalytics();
+} catch (e) {
+  // Silent fail: app must render even if analytics fails
+}
+
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('Failed to find #root element');
+}
+
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
