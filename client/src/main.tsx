@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './lib/i18n'; // ← MUST be imported before App so translations are ready on first render
 import App from './App';
 import { initAnalytics } from './lib/analytics';
 import './index.css';

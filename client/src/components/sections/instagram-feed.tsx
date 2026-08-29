@@ -13,12 +13,12 @@ import img5 from "@assets/Professional_body_care_and_exfoliation_treatment_17636
 import img6 from "@assets/Professional_body_treatment_and_wellness_service_1763686140860.png";
 
 const feedItems = [
-  { id: 1, img: img1, alt: "Luxury Spa Interior" },
-  { id: 2, img: img2, alt: "Elegant Nail Art" },
-  { id: 3, img: img3, alt: "Relaxing Facial" },
-  { id: 4, img: img4, alt: "Aromatherapy Essentials" },
-  { id: 5, img: img5, alt: "Body Care Treatment" },
-  { id: 6, img: img6, alt: "Massage Therapy" },
+  { id: 1, img: img1, alt: "Lüks Spa İç Mekan" },
+  { id: 2, img: img2, alt: "Tırnak Sanatı" },
+  { id: 3, img: img3, alt: "Yüz Bakımı" },
+  { id: 4, img: img4, alt: "Aromaterapi Ürünleri" },
+  { id: 5, img: img5, alt: "Vücut Bakımı" },
+  { id: 6, img: img6, alt: "Masaj Terapisi" },
 ];
 
 export function InstagramFeed() {
@@ -35,8 +35,15 @@ export function InstagramFeed() {
             {t('instagram.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl">
-            {/* Using simple interpolation for the link since Trans component might be overkill for this mockup speed */}
-            {t('instagram.desc').replace('{{link}}', '')} <a href={business.socials.instagramUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">{business.socials.instagramHandle}</a>
+            {t('instagram.desc')}{" "}
+            <a
+              href={business.socials.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary hover:underline"
+            >
+              {business.socials.instagramHandle}
+            </a>
           </p>
         </div>
 
@@ -66,9 +73,9 @@ export function InstagramFeed() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button 
-            variant="outline" 
-            size="lg" 
+          <Button
+            variant="outline"
+            size="lg"
             className="rounded-full px-8 border-primary text-primary hover:bg-primary hover:text-white transition-all"
             onClick={() => window.open(business.socials.instagramUrl, "_blank", "noopener,noreferrer")}
           >

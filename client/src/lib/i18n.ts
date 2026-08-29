@@ -60,7 +60,7 @@ const resources = {
       },
       instagram: {
         title: "Follow Our Journey",
-        desc: "Join our community on Instagram {{link}} for daily inspiration, beauty tips, and exclusive offers.",
+        desc: "Join our community on Instagram for daily inspiration, beauty tips, and exclusive offers.",
         viewFeed: "View Full Feed"
       },
       info: {
@@ -190,7 +190,7 @@ const resources = {
       },
       instagram: {
         title: "Yolculuğumuzu Takip Edin",
-        desc: "Günlük ilham, güzellik ipuçları ve özel teklifler için Instagram'da {{link}} topluluğumuza katılın.",
+        desc: "Günlük ilham, güzellik ipuçları ve özel teklifler için Instagram topluluğumuza katılın.",
         viewFeed: "Tüm Akışı Gör"
       },
       info: {
