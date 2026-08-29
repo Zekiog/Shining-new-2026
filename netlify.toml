@@ -2,34 +2,63 @@
   command = "npm run build"
   publish = "dist/public"
 
+# ── WWW → naked domain (301 kalici) ─────────────────────────────────────────
 [[redirects]]
   from = "https://www.shining.icu/*"
-  to = "https://shining.icu/:splat"
+  to   = "https://shining.icu/:splat"
   status = 301
-  force = true
+  force  = true
 
+# ── HTTP → HTTPS ─────────────────────────────────────────────────────────────
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "http://shining.icu/*"
+  to   = "https://shining.icu/:splat"
+  status = 301
+  force  = true
+
+# ── SPA catch-all ────────────────────────────────────────────────────────────
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
   status = 200
 
+# ════════════════════════════════════════════════════════════════════════════
+#  SECURITY + PERF HEADERS
+# ════════════════════════════════════════════════════════════════════════════
 [[headers]]
   for = "/*"
   [headers.values]
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    X-Frame-Options = "SAMEORIGIN"
-    Cross-Origin-Opener-Policy = "same-origin"
-    Cross-Origin-Resource-Policy = "same-origin"
-    # CSP is intentionally narrow to keep Google Fonts, Google Maps
-    # iframe, Tailwind's inline styles, and the JSON-LD inline schema
-    # working without weakening the policy elsewhere. Review whenever
-    # you add a new third-party (analytics, fonts, video, payment).
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://*.neon.tech; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(self), payment=()"
+    Cross-Origin-Opener-Policy   = "same-origin"
+    Cross-Origin-Resource-Policy = "cross-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; frame-src https://www.google.com https://maps.google.com https://maps.googleapis.com; connect-src 'self' https://*.neon.tech https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com; worker-src blob:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+    Content-Language = "tr"
+    Vary = "Accept-Encoding, Accept-Language"
 
+# ── Static assets: 1 yil immutable cache ─────────────────────────────────────
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# ── Favicon, robots, sitemap ─────────────────────────────────────────────────
+[[headers]]
+  for = "/favicon*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type  = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=43200"
+    Content-Type  = "application/xml; charset=utf-8"

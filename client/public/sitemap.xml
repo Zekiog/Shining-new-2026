@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://shining.icu/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://shining.icu/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://shining.icu/"/>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://shining.icu/" />
+    <image:image>
+      <image:loc>https://shining.icu/og-image.jpg</image:loc>
+      <image:caption>Shining Beauty Wellness — Adana Lüks Spa ve Güzellik Salonu</image:caption>
+      <image:geo_location>Seyhan, Adana, Türkiye</image:geo_location>
+      <image:title>Shining Beauty Wellness Adana</image:title>
+    </image:image>
   </url>
 </urlset>

@@ -4,7 +4,12 @@ export const business = {
   url: "https://shining.icu/",
   telephone: "+90 505 071 95 01",
   telephoneE164: "+905050719501",
-  priceRange: "₺₺",
+  whatsappNumber: "905050719501",
+  priceRange: "\u20ba\u20ba",
+  geo: {
+    latitude: 37.0053,
+    longitude: 35.3213,
+  },
   address: {
     streetAddress: "Gazipaşa Rezidans, Cemalpaşa, 60003 Sk Asmakat No:3",
     postalCode: "01120",
@@ -18,10 +23,6 @@ export const business = {
     closes: "20:00",
     closedDay: "Sunday",
   },
-  /**
-   * Verified social profile handles. Single source of truth — update
-   * here when the business changes a username, not in every section.
-   */
   socials: {
     instagramHandle: "@shining.beauty.wellness",
     instagramUrl: "https://www.instagram.com/shining.beauty.wellness",
