@@ -4,12 +4,14 @@
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
   "framework": null,
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/((?!assets/).*)", "destination": "/index.html" }
   ],
   "redirects": [
     {
-      "source": "https://www.shining.icu/:path*",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.shining.icu" }],
       "destination": "https://shining.icu/:path*",
       "permanent": true
     }
