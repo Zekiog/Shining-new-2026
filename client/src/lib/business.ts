@@ -11,7 +11,7 @@ export const business = {
     longitude: 35.3213,
   },
   address: {
-    streetAddress: "Gazipaşa Rezidans, Cemalpaşa, 60003 Sk Asmakat No:3",
+    streetAddress: "Gazipaşa Rezidans, Cemalpaşa Sk. Asmakat No:3",
     postalCode: "01120",
     addressLocality: "Seyhan",
     addressRegion: "Adana",
