@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Ana Sayfa -->
   <url>
     <loc>https://shining.icu/</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/"/>
@@ -17,4 +19,72 @@
       <image:title>Shining Beauty Wellness Adana</image:title>
     </image:image>
   </url>
+
+  <!-- Hizmetler -->
+  <url>
+    <loc>https://shining.icu/#hizmetler</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/#hizmetler"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://shining.icu/?lang=en#services"/>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Spa & Masaj -->
+  <url>
+    <loc>https://shining.icu/#spa-masaj</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/#spa-masaj"/>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Cilt Bakımı -->
+  <url>
+    <loc>https://shining.icu/#cilt-bakimi</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/#cilt-bakimi"/>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Manikür & Pedikür -->
+  <url>
+    <loc>https://shining.icu/#manikur-pedikur</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/#manikur-pedikur"/>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Galeri -->
+  <url>
+    <loc>https://shining.icu/#galeri</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/#galeri"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://shining.icu/?lang=en#gallery"/>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hakkımızda -->
+  <url>
+    <loc>https://shining.icu/#hakkimizda</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/#hakkimizda"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://shining.icu/?lang=en#about"/>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- İletişim -->
+  <url>
+    <loc>https://shining.icu/#iletisim</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://shining.icu/#iletisim"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://shining.icu/?lang=en#contact"/>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

@@ -1,16 +1,66 @@
+# shining.icu — robots.txt
+# Adana Güzellik Salonu & Wellness | Güncelleme: 2026-08-29
+
+# ── Genel kural: tüm botlar ──────────────────────────────────────────────────
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /.netlify/
+Disallow: /admin/
 
+# ── Google ───────────────────────────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
+User-agent: Googlebot-Image
+Allow: /
+
+# ── Yandex (Türkiye önemli trafik kaynağı) ───────────────────────────────────
 User-agent: Yandexbot
 Allow: /
-Crawl-delay: 2
+Crawl-delay: 3
 
+User-agent: YandexImages
+Allow: /
+
+# ── Bing ─────────────────────────────────────────────────────────────────────
 User-agent: bingbot
 Allow: /
 Crawl-delay: 2
 
+# ── DuckDuckGo ───────────────────────────────────────────────────────────────
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 2
+
+# ── Facebook / Instagram Crawler ─────────────────────────────────────────────
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+# ── WhatsApp Link Preview ─────────────────────────────────────────────────────
+User-agent: WhatsApp
+Allow: /
+
+# ── Twitter/X ────────────────────────────────────────────────────────────────
+User-agent: Twitterbot
+Allow: /
+
+# ── Kötü botları engelle ──────────────────────────────────────────────────────
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# ── Sitemap ──────────────────────────────────────────────────────────────────
 Sitemap: https://shining.icu/sitemap.xml

@@ -1,0 +1,45 @@
+{
+  "name": "Shining Beauty Wellness",
+  "short_name": "Shining",
+  "description": "Adana Seyhan'da lüks spa, masaj, cilt bakımı ve wellness hizmetleri.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f5",
+  "theme_color": "#c9a96e",
+  "lang": "tr",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "categories": ["beauty", "health", "lifestyle"],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Shining Beauty Wellness Ana Sayfa"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "WhatsApp Randevu",
+      "short_name": "Randevu",
+      "description": "WhatsApp üzerinden hızlı randevu",
+      "url": "https://wa.me/905050719501?text=Merhaba%2C%20randevu%20almak%20istiyorum.",
+      "icons": [{ "src": "/favicon.png", "sizes": "32x32" }]
+    }
+  ]
+}
