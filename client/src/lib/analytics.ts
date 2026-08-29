@@ -128,12 +128,29 @@ export function trackWhatsAppClick(source: string, extra?: Record<string, any>) 
   });
 }
 
+export function trackOutboundClick(destination: string, linkType?: string) {
+  if (!consentState.analytics) return;
+  safeGtag('event', 'outbound_click', {
+    event_category: 'engagement',
+    event_label: destination,
+    link_type: linkType
+  });
+}
+
 export function trackFormEvent(stage: string, payload?: Record<string, any>) {
   if (!consentState.analytics) return;
   safeGtag('event', 'form_event', {
     event_category: 'engagement',
     event_label: stage,
     ...payload
+  });
+}
+
+export function trackServiceSelect(service: string) {
+  if (!consentState.analytics) return;
+  safeGtag('event', 'service_select', {
+    event_category: 'engagement',
+    event_label: service
   });
 }
 
