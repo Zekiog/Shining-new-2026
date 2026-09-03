@@ -1,0 +1,17 @@
+name: Node.js lint
+on: [pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - name: Run lint
+        run: |
+          if npm run | grep -q 'lint'; then npm run lint; else npx eslint . || true; fi
