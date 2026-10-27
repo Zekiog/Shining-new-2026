@@ -17,9 +17,10 @@
  */
 
 import { trackWhatsAppClick } from "./analytics";
+import { business } from "./business";
 
-export const WHATSAPP_NUMBER_E164 = "905050719501";
-export const WHATSAPP_DISPLAY = "+90 505 071 95 01";
+export const WHATSAPP_NUMBER_E164 = business.whatsappNumber;
+export const WHATSAPP_DISPLAY = business.telephone;
 
 /** Allowed values for the optional `service` field in `BookingDraft`. */
 export const KNOWN_SERVICES = [
@@ -42,7 +43,7 @@ export const CTA_SOURCE = {
   HERO: "hero (Randevu Oluştur)",
   FOOTER: "footer (WhatsApp ikonu)",
   FLOATING: "floating WhatsApp butonu",
-  CONTACT_FORM: "shining.icu iletişim formu",
+  CONTACT_FORM: "netlify iletişim formu",
   SERVICE_BLOCK: "hizmet kartı",
 } as const;
 

@@ -1,69 +1,92 @@
-# Shining-new-2026 — Shining Beauty Wellness
+# Shining Beauty Wellness
 
-Production-ready marketing & booking website for **Shining Beauty
-Wellness**, a luxury spa and beauty salon in **Adana Seyhan, Turkey**.
+Adana, Türkiye’deki **Shining Beauty Wellness** için pazarlama ve WhatsApp randevu sitesi. React istemci (`client/`) ile Express API (`server/`) aynı depoda durur.
 
-> **Status:** ✅ Live — deployed via Netlify/Vercel from this monorepo.
-> Repo contains both the React client (`client/`) and the Node/Express
-> API (`server/`).
+**Canlı site:** https://shining-beauty-wellness-kurtulus.netlify.app  
+`shining.icu` süresi dolu olduğu için kanonik adres şimdilik bu Netlify hostudur. Alan adı yenilenince DNS buraya bağlanır.
 
----
+## Kimlik
 
-## What is it?
+Sitenin kanonik kimliği işletmenin bulunduğu yerdir. Geliştirici makinesinin ülkesi, tarayıcı dili veya saat dilimi bu kimliği değiştirmez.
 
-A fullstack TypeScript reference implementation for a single-location
-service business site:
-
-- **Marketing pages** — services, pricing, team, contact
-- **WhatsApp deep-link booking** — primary conversion path
-- **SEO-ready** — geo metadata, structured data, OpenGraph tags
-- **Bilingual surface** — Turkish primary, English fallback
-- **Deploy anywhere** — Vercel and Netlify configs both included
-
-## Tech stack
-
-| Layer | Choice |
+| Alan | Değer |
 |---|---|
-| Frontend | React + TypeScript + Vite |
-| UI primitives | Radix UI + Tailwind CSS |
-| Backend | Node.js + Express (TypeScript, ESM) |
-| Hosting | Vercel *or* Netlify (dual configs) |
+| Pazar | Adana, Türkiye |
+| Birincil dil | `tr-TR` |
+| İkinci dil | `en` — yalnız `?lang=en` veya üst menüdeki dil düğmesi |
+| Saat dilimi | `Europe/Istanbul` |
+| Para birimi | `TRY` |
+| Ülke | `TR` |
+| İl kodu | `TR-01` |
+| Kaynak | `client/src/lib/business.ts` |
 
-## Repo layout
+Norveççe bir proje dili yoktur. `nb`, `nn` ve `no` desteklenmez; tarayıcı bu dilleri bildirirse sayfa Türkçe kalır.
+
+Sokak kaydı `client/src/lib/business.ts` içindedir. Güncel adres: Kurtuluş Mahallesi, 64009 Sokak, Atakan Apartmanı B Blok Kat:1 No:2, 01130 Seyhan/Adana. Harita pini sokak merkezidir; kapı ayrıca ölçülmemiştir.
+
+## Ne işe yarar
+
+- Hizmet, fiyat, ekip ve iletişim sayfaları
+- WhatsApp derin bağlantısı ile randevu (birincil dönüşüm)
+- Yerel işletme yapılandırılmış verisi, Open Graph ve `hreflang`
+- Ziyaretçi metinleri Türkçe; İngilizce yedek paket `client/src/lib/i18n.ts` içindedir
+
+## Yığın
+
+| Katman | Seçim |
+|---|---|
+| Arayüz | React, TypeScript, Vite |
+| Bileşenler | Radix UI, Tailwind CSS |
+| Sunucu | Node.js, Express (TypeScript, ESM) |
+| Barındırma | Vercel veya Netlify |
+
+## Dizin
 
 ```
 .
-├── client/        # React SPA (Vite)
-├── server/        # Express API
+├── client/           # React SPA
+├── server/           # Express
 ├── attached_assets/
-├── components.json # shadcn/ui registry
-├── vercel.json    # Vercel deployment
-├── netlify.toml   # Netlify deployment
-└── package.json   # Workspace scripts
+├── components.json   # shadcn/ui kaydı
+├── vercel.json
+├── netlify.toml
+└── package.json
 ```
 
-## Local development
+## Yerel çalıştırma
 
 ```bash
 npm install
-npm run dev           # starts API + Vite dev server
-npm run dev:client    # client only (port 5000)
-npm run build         # production build
-npm run start         # serve built API
-npm run check         # tsc --noEmit
+npm run dev            # API ve Vite birlikte; varsayılan port 5000
+npm run dev:client     # yalnız istemci
+npm run build
+npm run start
+npm run check          # tsc
 ```
 
-## Deployment
+macOS’ta 5000 portu AirPlay (ControlCenter) tarafından tutulabilir. O durumda:
 
-Both providers are configured out of the box:
+```bash
+PORT=5173 npm run dev
+```
 
-- **Vercel** — `vercel.json` routes `/api/*` to the Express server,
-  everything else to the Vite-built static bundle.
-- **Netlify** — `netlify.toml` defines the same split using Netlify
-  Functions conventions.
+## Dil seçimi
 
-Pick one and connect the repo; no extra config needed.
+Algılama sırası `client/src/lib/i18n.ts` içindedir:
 
-## License
+1. Sorgu: `?lang=tr` veya `?lang=en`
+2. Çerez: `shining_dil`
+3. `client/index.html` içindeki `<html lang="tr">`
+
+`navigator.language` ve `localStorage` okunmaz. İngilizceyi seçen ziyaretçinin çerezi bir yıl durur; çerez yoksa dil Türkçedir.
+
+## Dağıtım
+
+- **Vercel** — `vercel.json`: `/api/*` Express’e, kalanı Vite çıktısına.
+- **Netlify** — `netlify.toml`: aynı ayrım, Functions düzeniyle.
+
+Depoyu seçilen sağlayıcıya bağlamak yeterlidir. Üretimde randevu verisi sunucuda tutulmaz; form WhatsApp bağlantısı açar.
+
+## Lisans
 
 [MIT](./LICENSE)
