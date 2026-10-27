@@ -30,7 +30,7 @@ export function Footer() {
                 <Instagram size={20} />
               </a>
               <a 
-                href="https://www.facebook.com/profile.php?id=61572925680179" 
+                href={business.socials.facebookUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground hover:text-white hover:bg-blue-600 transition-all shadow-sm"
@@ -83,17 +83,19 @@ export function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start space-x-3 text-muted-foreground group">
                 <MapPin size={18} className="mt-1 shrink-0 text-primary group-hover:scale-110 transition-transform" />
-                <a href="https://maps.app.goo.gl/OrzXqpzLIiSfEoekw" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  Gazipaşa Rezidans, Cemalpaşa,<br />60003 Sk Asmakat No:3,<br />01120 Seyhan/Adana, Türkiye
+                <a href={business.maps.searchUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  {business.address.lines[0]}<br />
+                  {business.address.lines[1]}<br />
+                  {business.address.lines[2]}
                 </a>
               </li>
               <li className="flex items-center space-x-3 text-muted-foreground group">
                 <Phone size={18} className="text-primary group-hover:scale-110 transition-transform" />
-                <a href="tel:+905050719501" className="hover:text-primary transition-colors">+90 505 071 95 01</a>
+                <a href={`tel:${business.telephoneE164}`} className="hover:text-primary transition-colors">{business.telephone}</a>
               </li>
               <li className="flex items-center space-x-3 text-muted-foreground group">
                 <Mail size={18} className="text-primary group-hover:scale-110 transition-transform" />
-                <a href="mailto:info@shining.icu" className="hover:text-primary transition-colors">info@shining.icu</a>
+                <a href={`mailto:${business.email}`} className="hover:text-primary transition-colors">{business.email}</a>
               </li>
             </ul>
           </div>

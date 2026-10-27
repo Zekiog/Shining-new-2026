@@ -40,9 +40,10 @@ export function Navbar() {
     }
   };
 
+  const englishActive = (i18n.resolvedLanguage ?? i18n.language).toLowerCase().startsWith("en");
+
   const toggleLanguage = () => {
-    const newLang = i18n.language === "en" ? "tr" : "en";
-    i18n.changeLanguage(newLang);
+    i18n.changeLanguage(englishActive ? "tr" : "en");
   };
 
   const navLinks = [
@@ -88,7 +89,7 @@ export function Navbar() {
               onClick={toggleLanguage}
               className="rounded-full hover:bg-primary/10 text-foreground w-10 h-10 font-medium"
             >
-              {i18n.language === 'en' ? 'TR' : 'EN'}
+              {englishActive ? "TR" : "EN"}
             </Button>
 
             <Button
@@ -117,7 +118,7 @@ export function Navbar() {
             onClick={toggleLanguage}
             className="rounded-full text-sm font-bold"
           >
-            {i18n.language === 'en' ? 'TR' : 'EN'}
+            {englishActive ? "TR" : "EN"}
           </Button>
           
           <Button

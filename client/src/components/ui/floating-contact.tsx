@@ -63,7 +63,7 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
-                      onClick={() => window.open("https://www.facebook.com/profile.php?id=61572925680179", "_blank")}
+                      onClick={() => window.open(business.socials.facebookUrl, "_blank", "noopener,noreferrer")}
                     >
                       <Facebook className="h-5 w-5" />
                     </Button>
@@ -111,7 +111,7 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-slate-700 hover:bg-slate-800 text-white shadow-lg"
-                      onClick={() => window.open("https://www.google.com/maps/place//data=!4m2!3m1!1s0x15288fe1189465c1:0xa28b25b106cdb9c0?sa=X&ved=1t:8290&ictx=111", "_blank")}
+                      onClick={() => window.open(business.maps.searchUrl, "_blank", "noopener,noreferrer")}
                     >
                       <MapPin className="h-5 w-5" />
                     </Button>

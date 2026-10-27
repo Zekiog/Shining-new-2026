@@ -8,7 +8,7 @@ import {
   setCustomConsent,
   subscribeConsent,
 } from "@/lib/consent";
-import { trackConsentDecision } from "@/lib/analytics";
+import { trackConsentDecision, updateConsent } from "@/lib/analytics";
 
 /**
  * KVKK-compliant cookie banner.
@@ -95,8 +95,10 @@ export function CookieBanner() {
             type="button"
             onClick={() => {
               if (showCustomize) {
-                setCustomConsent({ analytics, marketing });
-                trackConsentDecision("custom");
+                const state = setCustomConsent({ analytics, marketing });
+                updateConsent(state.categories);
+                trackConsentDecision("analytics", state.categories.analytics);
+                trackConsentDecision("marketing", state.categories.marketing);
               } else {
                 setShowCustomize(true);
               }
@@ -109,8 +111,10 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => {
-              rejectAll();
-              trackConsentDecision("reject");
+              const state = rejectAll();
+              updateConsent(state.categories);
+              trackConsentDecision("analytics", state.categories.analytics);
+              trackConsentDecision("marketing", state.categories.marketing);
             }}
             className="rounded-lg border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-600 dark:text-stone-200 dark:hover:bg-stone-800"
             data-testid="cookie-reject"
@@ -120,8 +124,10 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => {
-              acceptAll();
-              trackConsentDecision("accept");
+              const state = acceptAll();
+              updateConsent(state.categories);
+              trackConsentDecision("analytics", state.categories.analytics);
+              trackConsentDecision("marketing", state.categories.marketing);
             }}
             className="ml-auto rounded-lg bg-stone-900 px-4 py-2 text-sm font-semibold text-white hover:bg-stone-800 dark:bg-stone-50 dark:text-stone-900 dark:hover:bg-stone-200"
             data-testid="cookie-accept"

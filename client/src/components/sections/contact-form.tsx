@@ -13,21 +13,22 @@ import {
   trackFormEvent,
   trackServiceSelect,
 } from "@/lib/analytics";
+import { business } from "@/lib/business";
+
+const SERVICE_LABEL_KEY = {
+  "Genel randevu talebi": "contactForm.services.general",
+  Masaj: "contactForm.services.massage",
+  "Cilt bakımı": "contactForm.services.skin",
+  "Tırnak bakımı": "contactForm.services.nails",
+  Wellness: "contactForm.services.wellness",
+} as const;
 
 /**
- * Contact form -> WhatsApp booking flow.
- *
- * The previous implementation POSTed to `/api/contacts`. That endpoint
- * was removed in `server/routes.ts` because:
- *   1. Netlify static deploys do not run the Express server, so the form
- *      silently failed in production.
- *   2. Even when reachable, it stored visitor PII without an explicit
- *      consent gate.
- *
- * The form now opens WhatsApp Business with a pre-filled message. No
- * PII ever leaves the visitor's browser before they hit "Send" in the
- * WhatsApp app. Bot mitigation is a single hidden honeypot field -- basic
- * but enough for a static site without server-side rate limiting.
+ * İletişim formu WhatsApp randevusuna gider.
+ * Eski `/api/contacts` kaydı kalktı: statik yayında Express yoktu ve
+ * form kişisel veriyi rıza kapısı olmadan tutuyordu.
+ * Form, WhatsApp'ta hazır mesaj açar. Ziyaretçi uygulamada Gönder'e
+ * basmadan veri sunucuya gitmez. Botlar için gizli bir bal küpü alanı vardır.
  */
 export function ContactForm() {
   const { t } = useTranslation();
@@ -220,7 +221,7 @@ export function ContactForm() {
           >
             {KNOWN_SERVICES.map((s) => (
               <option key={s} value={s}>
-                {s}
+                {t(SERVICE_LABEL_KEY[s])}
               </option>
             ))}
           </select>
@@ -300,11 +301,11 @@ export function ContactForm() {
           {WHATSAPP_DISPLAY}
         </a>
         <a
-          href="mailto:info@shining.icu"
+          href={`mailto:${business.email}`}
           className="flex items-center gap-3 text-foreground/80 hover:text-primary transition-colors"
         >
           <Mail className="w-5 h-5 text-primary" />
-          info@shining.icu
+          {business.email}
         </a>
         <a
           href={buildWhatsAppUrl({ source: CTA_SOURCE.FOOTER })}

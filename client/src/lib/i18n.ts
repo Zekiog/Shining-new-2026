@@ -2,6 +2,16 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+/** Ziyaretçi dili çerezi. Tarayıcı veya işletim sistemi dili okunmaz. */
+const LOCALE_COOKIE = "shining_dil";
+
+function applyDocumentLocale(language: string) {
+  if (typeof document === "undefined") return;
+  const english = language.toLowerCase().startsWith("en");
+  document.documentElement.lang = english ? "en" : "tr";
+  document.documentElement.dir = "ltr";
+}
+
 const resources = {
   en: {
     translation: {
@@ -18,7 +28,7 @@ const resources = {
         welcome: "Luxury Wellness in Adana",
         title: "Shining Beauty",
         subtitle: "& Wellness",
-        description: "Experience the ultimate luxury spa treatments in Gazipaşa. Rejuvenate your body and soul with our exclusive wellness therapies.",
+        description: "Experience luxury spa treatments in Kurtuluş, Seyhan. Rejuvenate your body and soul with our exclusive wellness therapies.",
         bookBtn: "Book Appointment",
         servicesBtn: "View Services"
       },
@@ -48,7 +58,7 @@ const resources = {
       about: {
         tag: "About Us",
         title: "A Sanctuary for Body & Soul",
-        p1: "Welcome to Shining Beauty & Wellness, where luxury meets wellness. Located at Gazipaşa Rezidans in Cemalpaşa, we provide world-class spa and beauty services in a serene environment.",
+        p1: "Welcome to Shining Beauty & Wellness, where luxury meets wellness. In Kurtuluş, Seyhan, at Atakan Apartmanı on 64009 Sokak, we provide spa and beauty services in a calm setting.",
         p2: "Our expert therapists combine ancient techniques with modern skincare innovations to deliver treatments that not only rejuvenate your appearance but also restore your inner balance.",
         staff: {
           title: "Expert Staff",
@@ -72,8 +82,8 @@ const resources = {
         },
         location: {
           title: "Location",
-          addr1: "Gazipaşa Rezidans, Cemalpaşa",
-          addr2: "Seyhan/Adana, Türkiye"
+          addr1: "Kurtuluş Mahallesi, 64009 Sokak",
+          addr2: "Atakan Apartmanı B Blok Kat:1 No:2, 01130 Seyhan/Adana"
         },
         book: {
           title: "Book Online",
@@ -110,7 +120,14 @@ const resources = {
         consentRequired: "Please accept the consent checkbox to continue.",
         requiredFields: "Name and phone are required.",
         submitting: "Opening WhatsApp...",
-        submit: "Send booking request via WhatsApp"
+        submit: "Send booking request via WhatsApp",
+        services: {
+          general: "General appointment request",
+          massage: "Massage",
+          skin: "Skin care",
+          nails: "Nail care",
+          wellness: "Wellness"
+        }
       },
       cookieBanner: {
         title: "Cookies & analytics",
@@ -128,8 +145,24 @@ const resources = {
       },
       reviews: {
         eyebrow: "Guest stories",
-        title: "What our guests say",
-        subtitle: "Curated reviews from visitors who shared written permission to feature their feedback."
+        title: "Guest experiences",
+        subtitle: "Reviews from guests who chose Shining Beauty & Wellness.",
+        readAll: "Read all reviews",
+        contactTitle: "Contact us",
+        contactSubtitle: "For questions or an appointment request, please fill in the form.",
+        mapTitle: "Shining Beauty Wellness location, Kurtuluş, Seyhan",
+        merve: {
+          text: "The head spa was incredible. The scented oils and massage techniques cleared both my mind and my spirit. I definitely recommend it.",
+          service: "Head spa"
+        },
+        elif: {
+          text: "I was very pleased with the G5 massage and lymphatic drainage. The atmosphere is calm and the staff are professional.",
+          service: "Body treatment"
+        },
+        ayse: {
+          text: "I come for laser hair removal and carbon peeling. The results are excellent, and the hygiene and attention are outstanding.",
+          service: "Skin care"
+        }
       }
     }
   },
@@ -148,7 +181,7 @@ const resources = {
         welcome: "Adana'da Lüks Wellness Deneyimi",
         title: "Shining Beauty",
         subtitle: "& Wellness",
-        description: "Gazipaşa'da en üst düzey lüks spa deneyimini yaşayın. Özel wellness terapilerimizle bedeninizi ve ruhunuzu yenileyin.",
+        description: "Kurtuluş, Seyhan'da en üst düzey lüks spa deneyimini yaşayın. Özel wellness terapilerimizle bedeninizi ve ruhunuzu yenileyin.",
         bookBtn: "Randevu Oluştur",
         servicesBtn: "Hizmetleri İncele"
       },
@@ -178,7 +211,7 @@ const resources = {
       about: {
         tag: "Hakkımızda",
         title: "Beden ve Ruh İçin Bir Sığınak",
-        p1: "Lüksün wellness ile buluştuğu Shining Beauty & Wellness'a hoş geldiniz. Cemalpaşa Gazipaşa Rezidans'ta, huzurlu bir ortamda dünya standartlarında spa ve güzellik hizmetleri sunuyoruz.",
+        p1: "Lüksün wellness ile buluştuğu Shining Beauty & Wellness'a hoş geldiniz. Seyhan Kurtuluş Mahallesi'nde, 64009 Sokak'taki Atakan Apartmanı'nda spa ve güzellik hizmeti sunuyoruz.",
         p2: "Uzman terapistlerimiz, sadece görünümünüzü yenilemekle kalmayıp aynı zamanda iç dengenizi de geri kazandıran bakımlar sunmak için kadim teknikleri modern cilt bakımı yenilikleriyle birleştiriyor.",
         staff: {
           title: "Uzman Kadro",
@@ -202,8 +235,8 @@ const resources = {
         },
         location: {
           title: "Konum",
-          addr1: "Gazipaşa Rezidans, Cemalpaşa",
-          addr2: "Seyhan/Adana, Türkiye"
+          addr1: "Kurtuluş Mahallesi, 64009 Sokak",
+          addr2: "Atakan Apartmanı B Blok Kat:1 No:2, 01130 Seyhan/Adana"
         },
         book: {
           title: "Online Randevu",
@@ -240,7 +273,14 @@ const resources = {
         consentRequired: "Devam etmek için onay kutusunu işaretleyin.",
         requiredFields: "Ad ve telefon zorunludur.",
         submitting: "WhatsApp açılıyor...",
-        submit: "WhatsApp'tan Randevu Talebi Oluştur"
+        submit: "WhatsApp'tan Randevu Talebi Oluştur",
+        services: {
+          general: "Genel randevu talebi",
+          massage: "Masaj",
+          skin: "Cilt bakımı",
+          nails: "Tırnak bakımı",
+          wellness: "Wellness"
+        }
       },
       cookieBanner: {
         title: "Çerezler ve analitik",
@@ -258,8 +298,24 @@ const resources = {
       },
       reviews: {
         eyebrow: "Misafir yorumları",
-        title: "Misafirlerimiz ne diyor?",
-        subtitle: "Yayın için yazılı izin veren ziyaretçilerimizin seçilmiş yorumları."
+        title: "Misafir Deneyimleri",
+        subtitle: "Shining Beauty & Wellness'ı tercih eden misafirlerimizin değerli yorumları.",
+        readAll: "Tüm Yorumları Oku",
+        contactTitle: "Bize Ulaşın",
+        contactSubtitle: "Sorularınız veya randevu talebiniz için lütfen iletişim formunu doldurunuz.",
+        mapTitle: "Shining Beauty Wellness konumu, Kurtuluş, Seyhan",
+        merve: {
+          text: "Head spa deneyimi inanılmazdı! Kokulu yağlar ve masaj teknikleriyle hem zihnim hem de ruhum arındı. Kesinlikle tavsiye ediyorum.",
+          service: "Head Spa"
+        },
+        elif: {
+          text: "G5 masajı ve lenf drenaj hizmetlerinden çok memnun kaldım. Atmosfer çok huzurlu ve çalışanlar çok profesyonel.",
+          service: "Vücut Bakımı"
+        },
+        ayse: {
+          text: "Lazer epilasyon ve karbon peeling işlemleri için geliyorum. Sonuçlar harika, hijyen ve ilgi çok üst düzeyde.",
+          service: "Cilt Bakımı"
+        }
       }
     }
   }
@@ -270,17 +326,25 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'tr',
-    supportedLngs: ['tr', 'en'],
+    fallbackLng: "tr",
+    supportedLngs: ["tr", "en"],
+    nonExplicitSupportedLngs: false,
+    load: "languageOnly",
     detection: {
-      order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
-      lookupQuerystring: 'lang',
-      lookupCookie: 'i18next',
-      caches: ['cookie'],
+      // navigator yok: Norveç'teki bir makine nb/no veya en dayatamaz.
+      // Sıra: açık ?lang=, sonra ziyaretçi çerezi, sonra <html lang="tr">.
+      order: ["querystring", "cookie", "htmlTag"],
+      lookupQuerystring: "lang",
+      lookupCookie: LOCALE_COOKIE,
+      caches: ["cookie"],
+      cookieMinutes: 60 * 24 * 365,
     },
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   });
+
+applyDocumentLocale(i18n.resolvedLanguage ?? "tr");
+i18n.on("languageChanged", applyDocumentLocale);
 
 export default i18n;
