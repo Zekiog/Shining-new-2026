@@ -19,14 +19,24 @@ export const KNOWN_SERVICES = [
 
 export type KnownService = (typeof KNOWN_SERVICES)[number];
 
+const SERVICE_LABEL_EN: Record<KnownService, string> = {
+  "Genel randevu talebi": "General appointment request",
+  Masaj: "Massage",
+  "Cilt bakımı": "Skin care",
+  "Tırnak bakımı": "Nail care",
+  Wellness: "Wellness",
+};
+
+/** Stable English source keys for analytics / WhatsApp body. */
 export const CTA_SOURCE = {
-  NAVBAR_DESKTOP: "navbar (desktop CTA)",
-  NAVBAR_MOBILE: "navbar (mobil CTA)",
-  HERO: "hero (Randevu Oluştur)",
-  FOOTER: "footer (WhatsApp ikonu)",
-  FLOATING: "floating WhatsApp butonu",
-  CONTACT_FORM: "netlify iletişim formu",
-  SERVICE_BLOCK: "hizmet kartı",
+  NAVBAR_DESKTOP: "navbar-desktop",
+  NAVBAR_MOBILE: "navbar-mobile",
+  HERO: "hero",
+  FOOTER: "footer",
+  FLOATING: "floating",
+  CONTACT_FORM: "contact-form",
+  SERVICE_BLOCK: "service-card",
+  SERVICE_VIEW_ALL: "services-view-all",
 } as const;
 
 export type CtaSource = (typeof CTA_SOURCE)[keyof typeof CTA_SOURCE];
@@ -49,6 +59,14 @@ function isEnglish(lang?: string): boolean {
   return Boolean(lang && lang.toLowerCase().startsWith("en"));
 }
 
+function formatServiceLabel(service: string, en: boolean): string {
+  if (!en) return service;
+  if (service in SERVICE_LABEL_EN) {
+    return SERVICE_LABEL_EN[service as KnownService];
+  }
+  return service;
+}
+
 export function buildWhatsAppUrl(draft: BookingDraft): string {
   const en = isEnglish(draft.lang);
   const lines = formatLines([
@@ -57,7 +75,7 @@ export function buildWhatsAppUrl(draft: BookingDraft): string {
       : "Merhaba Shining Beauty & Wellness 👋",
     draft.service
       ? en
-        ? `Service: ${draft.service}`
+        ? `Service: ${formatServiceLabel(draft.service, true)}`
         : `Hizmet: ${draft.service}`
       : undefined,
     draft.name

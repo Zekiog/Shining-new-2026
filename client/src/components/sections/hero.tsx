@@ -22,6 +22,8 @@ export function Hero() {
         <img
           src={heroBg}
           alt="Shining Beauty Spa Ambience"
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover"
         />
         {/* Overlay Gradient */}

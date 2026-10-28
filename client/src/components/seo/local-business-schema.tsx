@@ -9,6 +9,20 @@ export function LocalBusinessSchema() {
       `https://wa.me/${business.whatsappNumber}`,
     ].filter(Boolean);
 
+    const openHours = business.openingHours.weekdays.map((day) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: `https://schema.org/${day}`,
+      opens: business.openingHours.opens,
+      closes: business.openingHours.closes,
+    }));
+
+    const closedSunday = {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: `https://schema.org/${business.openingHours.closedDay}`,
+      opens: "00:00",
+      closes: "00:00",
+    };
+
     const schema = {
       "@context": "https://schema.org",
       "@type": ["BeautySalon", "HealthAndBeautyBusiness", "LocalBusiness"],
@@ -20,7 +34,7 @@ export function LocalBusinessSchema() {
       telephone: business.telephone,
       priceRange: business.priceRange,
       currenciesAccepted: business.currency,
-      paymentAccepted: "Cash, Credit Card",
+      paymentAccepted: "Nakit, Kredi Kartı",
       inLanguage: [business.locale, "en"],
       description: business.description,
       address: {
@@ -37,12 +51,7 @@ export function LocalBusinessSchema() {
         longitude: business.geo.longitude,
       },
       hasMap: business.maps.searchUrl,
-      openingHoursSpecification: business.openingHours.weekdays.map((day) => ({
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: `https://schema.org/${day}`,
-        opens: business.openingHours.opens,
-        closes: business.openingHours.closes,
-      })),
+      openingHoursSpecification: [...openHours, closedSunday],
       sameAs,
       contactPoint: {
         "@type": "ContactPoint",
@@ -61,38 +70,48 @@ export function LocalBusinessSchema() {
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Beauty and Spa Services",
+        name: "Güzellik ve Spa Hizmetleri",
         itemListElement: [
           {
             "@type": "Offer",
+            priceCurrency: business.currency,
+            price: String(business.servicePrices.massage),
             itemOffered: {
               "@type": "Service",
-              name: "Spa Massage",
-              description: "Traditional and modern massage therapies to relieve stress and tension.",
+              name: "Spa Masajı",
+              description:
+                "Stres ve gerginliği azaltmak için geleneksel ve modern masaj terapileri.",
             },
           },
           {
             "@type": "Offer",
+            priceCurrency: business.currency,
+            price: String(business.servicePrices.skincare),
             itemOffered: {
               "@type": "Service",
-              name: "Skin Care",
-              description: "Rejuvenating facials and advanced skin treatments for a glowing complexion.",
+              name: "Cilt Bakımı",
+              description:
+                "Işıltılı bir cilt için yenileyici bakımlar ve gelişmiş cilt tedavileri.",
             },
           },
           {
             "@type": "Offer",
+            priceCurrency: business.currency,
+            price: String(business.servicePrices.nails),
             itemOffered: {
               "@type": "Service",
-              name: "Manicure & Pedicure",
-              description: "Premium manicures, pedicures, and custom nail art.",
+              name: "Manikür ve Pedikür",
+              description: "Premium manikür, pedikür ve özel tırnak tasarımı.",
             },
           },
           {
             "@type": "Offer",
+            priceCurrency: business.currency,
+            price: String(business.servicePrices.wellness),
             itemOffered: {
               "@type": "Service",
-              name: "Body Wellness",
-              description: "Holistic body treatments, peels, and detox wraps.",
+              name: "Vücut Wellness",
+              description: "Bütünsel vücut bakımları, peelingler ve detoks sargıları.",
             },
           },
         ],

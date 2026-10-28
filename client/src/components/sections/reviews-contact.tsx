@@ -1,46 +1,36 @@
 import { motion } from "framer-motion";
-import { Star, Quote, MapPin } from "lucide-react";
+import { Quote, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "./contact-form";
 import { business } from "@/lib/business";
 
 /**
- * Seçilmiş misafir yorumları. Her kayıt için yazılı izin gerekir (KVKK).
- * Adlar ad + soyad baş harfidir. "Tüm yorumlar" Google aramasına gider.
- * İşletme bir Google Place ID verirse sabit dizi canlı pencereyle değişir.
+ * Illustrative atelier notes — not live Google reviews.
+ * Named authors require written KVKK consent before presenting as verified guests.
+ * "Read reviews" opens a Google search; Place ID is not wired.
  */
 
-interface Testimonial {
+interface AtelierNote {
   id: number;
-  author: string;
-  date: string;
-  rating: 1 | 2 | 3 | 4 | 5;
   key: "merve" | "elif" | "ayse";
 }
 
-const reviews: Testimonial[] = [
-  { id: 1, author: "Merve Y.", date: "2026-07-12", rating: 5, key: "merve" },
-  { id: 2, author: "Elif K.", date: "2026-06-28", rating: 5, key: "elif" },
-  { id: 3, author: "Ayşe D.", date: "2026-05-19", rating: 5, key: "ayse" },
+const atelierNotes: AtelierNote[] = [
+  { id: 1, key: "merve" },
+  { id: 2, key: "elif" },
+  { id: 3, key: "ayse" },
 ];
 
-function formatReviewDate(isoDate: string, language: string) {
-  const locale = language.toLowerCase().startsWith("en") ? "en-GB" : "tr-TR";
-  return new Intl.DateTimeFormat(locale, {
-    timeZone: business.timeZone,
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(`${isoDate}T12:00:00Z`));
-}
-
 export function ReviewsAndContact() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <section id="contact" className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 mb-24">
         <div className="text-center max-w-3xl mx-auto mb-16">
+          <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
+            {t("reviews.eyebrow")}
+          </p>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
             {t("reviews.title")}
           </h2>
@@ -50,9 +40,9 @@ export function ReviewsAndContact() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {reviews.map((review, index) => (
+          {atelierNotes.map((note, index) => (
             <motion.div
-              key={review.id}
+              key={note.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -60,26 +50,15 @@ export function ReviewsAndContact() {
               className="bg-card p-8 rounded-2xl shadow-sm border border-border/50 relative"
             >
               <Quote className="absolute top-6 right-6 text-primary/20 w-10 h-10" />
-              <div className="flex space-x-1 text-primary mb-4">
-                {[...Array(review.rating)].map((_, i) => (
-                  <Star key={i} size={16} fill="currentColor" />
-                ))}
-              </div>
               <p className="text-foreground/80 mb-6 italic leading-relaxed">
-                &ldquo;{t(`reviews.${review.key}.text`)}&rdquo;
+                &ldquo;{t(`reviews.${note.key}.text`)}&rdquo;
               </p>
               <div className="border-t border-border/50 pt-4 flex justify-between items-center">
-                <span className="font-serif font-bold text-foreground">{review.author}</span>
+                <span className="text-xs text-muted-foreground">{t("reviews.illustrative")}</span>
                 <span className="text-xs text-primary bg-primary/10 px-3 py-1 rounded-full">
-                  {t(`reviews.${review.key}.service`)}
+                  {t(`reviews.${note.key}.service`)}
                 </span>
               </div>
-              <time
-                dateTime={review.date}
-                className="mt-2 block text-xs text-muted-foreground"
-              >
-                {formatReviewDate(review.date, i18n.resolvedLanguage ?? i18n.language)}
-              </time>
             </motion.div>
           ))}
         </div>
@@ -101,7 +80,6 @@ export function ReviewsAndContact() {
         </div>
       </div>
 
-      {/* Contact Form Section */}
       <div className="container mx-auto px-4 py-24">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
@@ -120,6 +98,9 @@ export function ReviewsAndContact() {
         <div className="mx-auto max-w-2xl rounded-2xl border border-border/60 bg-secondary/20 p-6 text-center">
           <p className="mb-2 text-sm font-medium uppercase tracking-wide text-primary">
             {t("info.location.title")}
+          </p>
+          <p className="mb-3 text-xs text-muted-foreground">
+            {t("info.hours.week")} · {t("info.hours.sunday")}
           </p>
           <a
             href={business.maps.searchUrl}
@@ -140,19 +121,18 @@ export function ReviewsAndContact() {
         </div>
       </div>
 
-      {/* Full Width Map Section */}
       <div className="w-full h-[500px] relative group">
         <iframe
           src={business.maps.embedUrl}
           width="100%"
           height="100%"
-          style={{ border: 0, filter: 'grayscale(0.2)' }}
+          style={{ border: 0, filter: "grayscale(0.2)" }}
           allowFullScreen={true}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           className="w-full h-full"
           title={t("reviews.mapTitle")}
-        ></iframe>
+        />
       </div>
     </section>
   );

@@ -29,6 +29,13 @@ export const business = {
   /** Mailbox on shining.icu is offline while the domain is expired. Prefer WhatsApp. */
   email: "",
   priceRange: "\u20ba\u20ba",
+  /** Starting prices in TRY (from-price display). Confirm with salon before campaigns. */
+  servicePrices: {
+    massage: 800,
+    skincare: 600,
+    nails: 300,
+    wellness: 1200,
+  },
   description:
     "Adana Seyhan Kurtuluş Mahallesi'nde lüks spa, masaj, cilt bakımı ve wellness hizmetleri. Atakan Apartmanı B Blok, 64009 Sokak.",
   geo: {

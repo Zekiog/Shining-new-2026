@@ -35,16 +35,20 @@ export default function Home() {
                 className="relative"
               >
                 <div className="aspect-square rounded-2xl overflow-hidden bg-neutral-200 relative z-10 shadow-2xl">
-                  <img 
-                    src={aboutImg} 
-                    alt="Shining Beauty Spa Interior" 
+                  <img
+                    src={aboutImg}
+                    alt="Shining Beauty Spa Interior"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute -bottom-8 -right-8 w-2/3 aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-300 z-20 border-8 border-background shadow-xl">
-                   <img 
+                   <img
                     src={detailImg}
-                    alt="Aromatherapy Details" 
+                    alt="Aromatherapy Details"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>

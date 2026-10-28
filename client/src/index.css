@@ -4,9 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-serif: "Playfair Display", serif;
-  --font-sans: "Poppins", sans-serif;
-  --font-script: "Pacifico", cursive;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", "Helvetica Neue", sans-serif;
+  --font-script: "Playfair Display", Georgia, serif;
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));

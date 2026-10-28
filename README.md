@@ -1,93 +1,77 @@
 # Shining Beauty Wellness
 
-Adana, Türkiye’deki **Shining Beauty Wellness** için pazarlama ve WhatsApp randevu sitesi. React istemci (`client/`) ile Express API (`server/`) aynı depoda durur.
+Marketing and WhatsApp booking site for **Shining Beauty Wellness** in Adana, Türkiye. React client (`client/`) ships as a static SPA; Express (`server/`) is for local development only.
 
-**Canlı site:** https://shining-beauty-wellness-kurtulus.netlify.app  
+**Live site:** https://shining-beauty-wellness-kurtulus.netlify.app
 
-`shining.icu` Hostinger’da süresi dolmuş durumda; Hostinger yenilemesi yapılmıyor. DNS hâlâ `ns1/ns2.dns-expired.com` ve TXT `This domain is expired at Hostinger!` — Cloudflare nameserver’larında değil. Cloudflare paneli bu alan adını yetkili yönetemez. Kanonik adres Netlify hostudur.
+`shining.icu` is expired at Hostinger (NS `dns-expired.com`). It is not renewed. Canonical host is the Netlify URL above.
 
-## Kimlik
+## Identity
 
-Sitenin kanonik kimliği işletmenin bulunduğu yerdir. Geliştirici makinesinin ülkesi, tarayıcı dili veya saat dilimi bu kimliği değiştirmez.
+Canonical identity is the business location. Developer OS language or timezone does not override it.
 
-| Alan | Değer |
+| Field | Value |
 |---|---|
-| Pazar | Adana, Türkiye |
-| Birincil dil | `tr-TR` |
-| İkinci dil | `en` — yalnız `?lang=en` veya üst menüdeki dil düğmesi |
-| Saat dilimi | `Europe/Istanbul` |
-| Para birimi | `TRY` |
-| Ülke | `TR` |
-| İl kodu | `TR-01` |
-| Kaynak | `client/src/lib/business.ts` |
+| Market | Adana, Türkiye |
+| Primary language | `tr-TR` |
+| Secondary language | `en` via `?lang=en` or the nav language toggle |
+| Time zone | `Europe/Istanbul` |
+| Currency | `TRY` |
+| Country | `TR` |
+| Region | `TR-01` |
+| Source of truth | `client/src/lib/business.ts` |
 
-Norveççe bir proje dili yoktur. `nb`, `nn` ve `no` desteklenmez; tarayıcı bu dilleri bildirirse sayfa Türkçe kalır.
+Address: Kurtuluş Mahallesi, 64009 Sokak, Atakan Apartmanı B Blok Kat:1 No:2, 01130 Seyhan/Adana. Map pin is street-center, not a surveyed door coordinate.
 
-Sokak kaydı `client/src/lib/business.ts` içindedir. Güncel adres: Kurtuluş Mahallesi, 64009 Sokak, Atakan Apartmanı B Blok Kat:1 No:2, 01130 Seyhan/Adana. Harita pini sokak merkezidir; kapı ayrıca ölçülmemiştir.
+## What it does
 
-## Ne işe yarar
+- Services, atmosphere gallery, contact, map
+- WhatsApp deep-link booking (primary conversion; no server-side PII store)
+- LocalBusiness JSON-LD, Open Graph, `hreflang`
+- TR-first UI with English strings in `client/src/lib/i18n.ts`
 
-- Hizmet, fiyat, ekip ve iletişim sayfaları
-- WhatsApp derin bağlantısı ile randevu (birincil dönüşüm)
-- Yerel işletme yapılandırılmış verisi, Open Graph ve `hreflang`
-- Ziyaretçi metinleri Türkçe; İngilizce yedek paket `client/src/lib/i18n.ts` içindedir
+## Stack
 
-## Yığın
-
-| Katman | Seçim |
+| Layer | Choice |
 |---|---|
-| Arayüz | React, TypeScript, Vite |
-| Bileşenler | Radix UI, Tailwind CSS |
-| Sunucu | Node.js, Express (TypeScript, ESM) |
-| Barındırma | Vercel veya Netlify |
+| UI | React, TypeScript, Vite |
+| Components | Radix UI, Tailwind CSS |
+| Local API (dev) | Node.js, Express (ESM) — empty routes in production path |
+| Hosting | **Netlify** static publish of `dist/public` |
 
-## Dizin
-
-```
-.
-├── client/           # React SPA
-├── server/           # Express
-├── attached_assets/
-├── components.json   # shadcn/ui kaydı
-├── vercel.json
-├── netlify.toml
-└── package.json
-```
-
-## Yerel çalıştırma
+## Local run
 
 ```bash
 npm install
-npm run dev            # API ve Vite birlikte; varsayılan port 5000
-npm run dev:client     # yalnız istemci
+npm run dev            # Express + Vite; default port 5000
+PORT=5173 npm run dev  # if macOS AirPlay holds :5000
 npm run build
-npm run start
 npm run check          # tsc
 ```
 
-macOS’ta 5000 portu AirPlay (ControlCenter) tarafından tutulabilir. O durumda:
+## Language
 
-```bash
-PORT=5173 npm run dev
-```
+Detection order in `client/src/lib/i18n.ts`:
 
-## Dil seçimi
+1. `?lang=tr` / `?lang=en`
+2. Cookie `shining_dil`
+3. `<html lang="tr">` in `client/index.html`
 
-Algılama sırası `client/src/lib/i18n.ts` içindedir:
+`navigator.language` is not used.
 
-1. Sorgu: `?lang=tr` veya `?lang=en`
-2. Çerez: `shining_dil`
-3. `client/index.html` içindeki `<html lang="tr">`
+## Deploy
 
-`navigator.language` ve `localStorage` okunmaz. İngilizceyi seçen ziyaretçinin çerezi bir yıl durur; çerez yoksa dil Türkçedir.
+- **Netlify** — `netlify.toml`: `npm run build`, publish `dist/public`, SPA fallback to `index.html`. Production must track a branch that contains the Kurtuluş identity (or a manual `netlify deploy --prod --dir=dist/public --no-build` from that tree). Auto-publish from an older `main` will overwrite Kurtuluş content.
+- Booking never posts to a Netlify Function; the contact form opens WhatsApp.
 
-## Dağıtım
+Optional env (Netlify UI): `VITE_GA4_MEASUREMENT_ID`, `VITE_GOOGLE_SITE_VERIFICATION`.
 
-- **Vercel** — `vercel.json`: `/api/*` Express’e, kalanı Vite çıktısına.
-- **Netlify** — `netlify.toml`: aynı ayrım, Functions düzeniyle.
+## Human follow-ups
 
-Depoyu seçilen sağlayıcıya bağlamak yeterlidir. Üretimde randevu verisi sunucuda tutulmaz; form WhatsApp bağlantısı açar.
+- Update Google Business Profile to Kurtuluş address/hours
+- Google Place ID if live reviews should replace illustrative atelier notes
+- Restore mailbox/domain only if a new domain is chosen (not `shining.icu` renew)
 
-## Lisans
+## License
 
 [MIT](./LICENSE)

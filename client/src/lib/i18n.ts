@@ -71,9 +71,17 @@ const resources = {
         }
       },
       instagram: {
-        title: "Follow Our Journey",
-        desc: "Join our community on Instagram for daily inspiration, beauty tips, and exclusive offers.",
-        viewFeed: "View Full Feed"
+        title: "Atelier atmosphere",
+        desc: "A curated gallery of our spa mood — open Instagram for the live profile.",
+        viewFeed: "Open Instagram"
+      },
+      gallery: {
+        spa: "Luxury spa treatment room",
+        nails: "Nail art service",
+        facial: "Facial skincare treatment",
+        aroma: "Aromatherapy products",
+        body: "Body care treatment",
+        massage: "Massage therapy"
       },
       info: {
         hours: {
@@ -145,10 +153,11 @@ const resources = {
         marketingHint: "Personalized ads and remarketing via Google Ads."
       },
       reviews: {
-        eyebrow: "Guest stories",
-        title: "Guest experiences",
-        subtitle: "Reviews from guests who chose Shining Beauty & Wellness.",
-        readAll: "Read all reviews",
+        eyebrow: "Atelier notes",
+        title: "What we hear in the salon",
+        subtitle: "Illustrative notes about our treatments — not a live Google review feed. Search Google for public guest reviews.",
+        illustrative: "Illustrative note",
+        readAll: "Search Google reviews",
         contactTitle: "Contact us",
         contactSubtitle: "For questions or an appointment request, please fill in the form.",
         mapTitle: "Shining Beauty Wellness location, Kurtuluş, Seyhan",
@@ -225,9 +234,17 @@ const resources = {
         }
       },
       instagram: {
-        title: "Yolculuğumuzu Takip Edin",
-        desc: "Günlük ilham, güzellik ipuçları ve özel teklifler için Instagram topluluğumuza katılın.",
-        viewFeed: "Tüm Akışı Gör"
+        title: "Atölye atmosferi",
+        desc: "Salonumuzun ruhunu yansıtan seçilmiş görseller — canlı profil için Instagram’ı açın.",
+        viewFeed: "Instagram’ı Aç"
+      },
+      gallery: {
+        spa: "Lüks spa tedavi odası",
+        nails: "Tırnak sanatı hizmeti",
+        facial: "Yüz bakımı",
+        aroma: "Aromaterapi ürünleri",
+        body: "Vücut bakımı",
+        massage: "Masaj terapisi"
       },
       info: {
         hours: {
@@ -299,10 +316,11 @@ const resources = {
         marketingHint: "Google Ads üzerinden kişiselleştirilmiş reklamlar ve yeniden pazarlama."
       },
       reviews: {
-        eyebrow: "Misafir yorumları",
-        title: "Misafir Deneyimleri",
-        subtitle: "Shining Beauty & Wellness'ı tercih eden misafirlerimizin değerli yorumları.",
-        readAll: "Tüm Yorumları Oku",
+        eyebrow: "Atölye notları",
+        title: "Salonda duyduklarımız",
+        subtitle: "Hizmetlerimize dair örnek notlar — canlı Google yorum akışı değildir. Kamuya açık yorumlar için Google’da arayın.",
+        illustrative: "Örnek not",
+        readAll: "Google’da yorum ara",
         contactTitle: "Bize Ulaşın",
         contactSubtitle: "Sorularınız veya randevu talebiniz için lütfen iletişim formunu doldurunuz.",
         mapTitle: "Shining Beauty Wellness konumu, Kurtuluş, Seyhan",
