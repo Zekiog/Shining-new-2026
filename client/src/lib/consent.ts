@@ -120,9 +120,26 @@ export function subscribeConsent(listener: Listener): () => void {
   return () => listeners.delete(listener);
 }
 
+/** Clear stored choice so the banner can ask again (privacy preferences). */
+export function clearConsent(): void {
+  cached = null;
+  if (typeof window !== "undefined") {
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+  }
+}
+
 /** True only after the visitor has answered the banner. */
 export function hasConsented(): boolean {
-  return getConsentState().decision !== DEFAULT_CONSENT_STATE.decision || getConsentState().updatedAt !== DEFAULT_CONSENT_STATE.updatedAt;
+  if (typeof window === "undefined") return false;
+  try {
+    return window.localStorage.getItem(STORAGE_KEY) !== null;
+  } catch {
+    return false;
+  }
 }
 
 /** Translate the consent state into Consent Mode v2 signals. */

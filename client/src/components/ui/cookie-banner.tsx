@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   acceptAll,
-  getConsentState,
+  clearConsent,
   hasConsented,
   rejectAll,
   setCustomConsent,
   subscribeConsent,
 } from "@/lib/consent";
-import { trackConsentDecision } from "@/lib/analytics";
+import { trackConsentDecision, updateConsent } from "@/lib/analytics";
 
 /**
  * KVKK-compliant cookie banner.
@@ -31,9 +31,18 @@ export function CookieBanner() {
 
   useEffect(() => {
     setVisible(!hasConsented());
-    return subscribeConsent(() => {
+    const onReopen = () => {
+      setShowCustomize(false);
+      setVisible(true);
+    };
+    window.addEventListener("shining:reopen-consent", onReopen);
+    const unsub = subscribeConsent(() => {
       setVisible(false);
     });
+    return () => {
+      window.removeEventListener("shining:reopen-consent", onReopen);
+      unsub();
+    };
   }, []);
 
   if (!visible) return null;
@@ -95,8 +104,10 @@ export function CookieBanner() {
             type="button"
             onClick={() => {
               if (showCustomize) {
-                setCustomConsent({ analytics, marketing });
-                trackConsentDecision("custom");
+                const state = setCustomConsent({ analytics, marketing });
+                updateConsent(state.categories);
+                trackConsentDecision("analytics", state.categories.analytics);
+                trackConsentDecision("marketing", state.categories.marketing);
               } else {
                 setShowCustomize(true);
               }
@@ -109,8 +120,10 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => {
-              rejectAll();
-              trackConsentDecision("reject");
+              const state = rejectAll();
+              updateConsent(state.categories);
+              trackConsentDecision("analytics", state.categories.analytics);
+              trackConsentDecision("marketing", state.categories.marketing);
             }}
             className="rounded-lg border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-600 dark:text-stone-200 dark:hover:bg-stone-800"
             data-testid="cookie-reject"
@@ -120,8 +133,10 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => {
-              acceptAll();
-              trackConsentDecision("accept");
+              const state = acceptAll();
+              updateConsent(state.categories);
+              trackConsentDecision("analytics", state.categories.analytics);
+              trackConsentDecision("marketing", state.categories.marketing);
             }}
             className="ml-auto rounded-lg bg-stone-900 px-4 py-2 text-sm font-semibold text-white hover:bg-stone-800 dark:bg-stone-50 dark:text-stone-900 dark:hover:bg-stone-200"
             data-testid="cookie-accept"
@@ -135,26 +150,23 @@ export function CookieBanner() {
 }
 
 /** Floating "Privacy preferences" button to reopen the banner. */
-export function CookieSettingsButton({ onClick }: { onClick: () => void }) {
+export function CookieSettingsButton() {
   const { t } = useTranslation();
   return (
     <button
       type="button"
-      onClick={onClick}
-      className="text-xs text-stone-500 underline-offset-2 hover:underline dark:text-stone-400"
+      onClick={reopenBanner}
+      className="text-xs text-muted-foreground underline-offset-2 hover:underline"
+      data-testid="cookie-settings"
     >
       {t("cookieBanner.settings")}
     </button>
   );
 }
 
-/** Helper exposed for tests / programmatic re-prompt. */
+/** Clear consent and ask again. */
 export function reopenBanner() {
-  // The banner listens to consent changes via subscribeConsent and
-  // hides on next state. To "re-open", we temporarily clear storage
-  // (caller is responsible for re-setting).
   if (typeof window === "undefined") return;
-  window.localStorage.removeItem("shining.consent.v1");
-  // Force a custom event so subscribers can re-evaluate.
+  clearConsent();
   window.dispatchEvent(new CustomEvent("shining:reopen-consent"));
 }

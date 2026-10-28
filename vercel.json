@@ -8,14 +8,6 @@
   "rewrites": [
     { "source": "/((?!assets/).*)", "destination": "/index.html" }
   ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.shining.icu" }],
-      "destination": "https://shining.icu/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",

@@ -1,61 +1,51 @@
-# Security Policy
+# Güvenlik ilkesi
 
-## Supported versions
+## Desteklenen sürümler
 
-The following versions of this project receive security updates:
+Güvenlik güncellemesi alan sürümler:
 
-| Version | Supported          |
-|---------|--------------------|
-| `main`  | ✅ Active          |
-| latest tagged release | ✅ Active |
-| older releases | ❌ Best-effort only |
+| Sürüm | Destek |
+|---|---|
+| `main` | Etkin |
+| Son etiketli sürüm | Etkin |
+| Daha eski sürümler | Yalnızca olanak ölçüsünde |
 
-## Reporting a vulnerability
+## Açık bildirme
 
-**Please do not open a public GitHub issue for security vulnerabilities.**
+**Güvenlik açığı için herkese açık bir GitHub sorunu açmayın.**
 
-Instead, report privately via one of the channels below. Include enough
-information to reproduce and assess impact:
+Aşağıdaki kanallardan biriyle özel bildirin. Yeniden üretmek ve etkiyi ölçmek için yeterli bilgi verin:
 
-- A clear description of the issue and the affected component / file
-- Reproduction steps or a minimal proof-of-concept
-- Impact assessment (what an attacker could achieve)
-- Environment details if relevant (OS, runtime version)
+- Sorunun ve etkilenen bileşenin veya dosyanın açık tarifi
+- Yeniden üretme adımları veya küçük bir kanıt
+- Etki: bir saldırgan ne elde edebilir
+- Gerekirse ortam (işletim sistemi, çalışma zamanı sürümü)
 
-### Private reporting channels
+### Özel kanallar
 
-- **GitHub private vulnerability report:** use the
-  *“Report a vulnerability”* button on the repository *Security* tab.
-  This creates a private advisory visible only to maintainers.
-- **Email:** security contact listed on the maintainer profile (no
-  PGP requirement, but PGP-encrypted email is supported if offered).
+- **GitHub özel güvenlik bildirimi:** deponun *Security* sekmesindeki *Report a vulnerability* düğmesi. Bu, yalnız bakımcıların gördüğü özel bir danışma açar.
+- **E-posta:** bakımcı profilindeki güvenlik iletişimi. PGP zorunlu değildir; sunuluyorsa şifreli ileti kabul edilir.
 
-You should receive an acknowledgement within **5 business days**.
+**5 iş günü** içinde alındı bilgisi bekleyin.
 
-## What to expect after reporting
+## Bildirimden sonra
 
-1. Triage within 5 business days — we confirm receipt and assign a
-   severity (Critical / High / Medium / Low).
-2. A patch or workaround timeline is communicated within 10 business
-   days for High / Critical issues.
-3. Once a fix is shipped we publish a coordinated advisory on GitHub
-   and credit the reporter (unless you ask to remain anonymous).
-4. If we cannot reproduce or do not consider the report a security
-   issue, we will explain why in a follow-up.
+1. 5 iş günü içinde sınıflandırma: alındı onayı ve şiddet (Kritik / Yüksek / Orta / Düşük).
+2. Yüksek ve Kritik kayıtlarda 10 iş günü içinde yama veya geçici çözüm takvimi.
+3. Düzeltme yayınlanınca GitHub üzerinde eşgüdümlü bir danışma çıkar. İstemediğiniz sürece adınız yazılır.
+4. Yeniden üretilemezse veya güvenlik kaydı sayılmazsa gerekçe ayrıca iletilir.
 
-## Scope
+## Kapsam
 
-In scope: vulnerabilities in this repository’s source code, default
-configuration, CI workflows, and any documented deployment paths.
+Kapsam içi: bu deponun kaynak kodu, varsayılan yapılandırma, CI akışları ve belgelenmiş dağıtım yolları.
 
-Out of scope:
+Kapsam dışı:
 
-- Vulnerabilities in upstream dependencies (please report upstream)
-- Issues requiring physical / local-machine access only
-- Social engineering or denial-of-service against the maintainer
-- “Theoretical” findings without a concrete attack path
+- Üst bağımlılıklardaki açıklar (ilgili projeye bildirin)
+- Yalnızca fiziksel veya yerel makine erişimi gerektiren durumlar
+- Bakımcıya yönelik sosyal mühendislik veya hizmet dışı bırakma
+- Somut bir saldırı yolu olmayan kuramsal bulgular
 
-## Hardening references
+## Sertleştirme notları
 
-See `HARDENING_NOTES.md` (if present) for design decisions relevant
-to the security posture of this project.
+Tasarım kararları için depoda varsa `HARDENING_NOTES.md` dosyasına bakın.

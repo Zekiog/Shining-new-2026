@@ -10,7 +10,10 @@ import {
 } from "@/lib/booking";
 
 export function Hero() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.resolvedLanguage ?? i18n.language).toLowerCase().startsWith("en")
+    ? "en"
+    : "tr";
 
   return (
     <section className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
@@ -19,6 +22,8 @@ export function Hero() {
         <img
           src={heroBg}
           alt="Shining Beauty Spa Ambience"
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover"
         />
         {/* Overlay Gradient */}
@@ -65,7 +70,9 @@ export function Hero() {
           <Button
             size="lg"
             className="bg-white text-black hover:bg-white/90 rounded-full px-8 py-6 text-lg font-medium min-w-[180px] border-0"
-            onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.HERO), CTA_SOURCE.HERO)}
+            onClick={() =>
+              openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.HERO, undefined, lang), CTA_SOURCE.HERO)
+            }
           >
             {t('hero.bookBtn')}
           </Button>

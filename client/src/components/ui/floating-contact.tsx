@@ -1,4 +1,4 @@
-import { Phone, MapPin, Share2, Instagram as InstagramIcon, Facebook, MessageCircle } from "lucide-react";
+import { MapPin, Share2, Instagram as InstagramIcon, Facebook, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -18,7 +18,10 @@ import { business } from "@/lib/business";
 
 export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.resolvedLanguage ?? i18n.language).toLowerCase().startsWith("en")
+    ? "en"
+    : "tr";
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -39,7 +42,12 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg"
-                      onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.FLOATING), CTA_SOURCE.FLOATING)}
+                      onClick={() =>
+                        openWhatsApp(
+                          buildQuickWhatsAppUrl(CTA_SOURCE.FLOATING, undefined, lang),
+                          CTA_SOURCE.FLOATING,
+                        )
+                      }
                     >
                       <MessageCircle className="h-5 w-5" />
                     </Button>
@@ -63,7 +71,7 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
-                      onClick={() => window.open("https://www.facebook.com/profile.php?id=61572925680179", "_blank")}
+                      onClick={() => window.open(business.socials.facebookUrl, "_blank", "noopener,noreferrer")}
                     >
                       <Facebook className="h-5 w-5" />
                     </Button>
@@ -111,7 +119,7 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-slate-700 hover:bg-slate-800 text-white shadow-lg"
-                      onClick={() => window.open("https://www.google.com/maps/place//data=!4m2!3m1!1s0x15288fe1189465c1:0xa28b25b106cdb9c0?sa=X&ved=1t:8290&ictx=111", "_blank")}
+                      onClick={() => window.open(business.maps.searchUrl, "_blank", "noopener,noreferrer")}
                     >
                       <MapPin className="h-5 w-5" />
                     </Button>

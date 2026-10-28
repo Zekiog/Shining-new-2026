@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Moon, Sun, Menu, Globe } from "lucide-react";
+import { Moon, Sun, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -9,13 +9,13 @@ import {
   CTA_SOURCE,
   openWhatsApp,
 } from "@/lib/booking";
+import { business } from "@/lib/business";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const { t, i18n } = useTranslation();
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -24,7 +24,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle theme toggle
   useEffect(() => {
     const isDark = document.documentElement.classList.contains("dark");
     setTheme(isDark ? "dark" : "light");
@@ -40,18 +39,32 @@ export function Navbar() {
     }
   };
 
+  const englishActive = (i18n.resolvedLanguage ?? i18n.language).toLowerCase().startsWith("en");
+  const lang = englishActive ? "en" : "tr";
+
   const toggleLanguage = () => {
-    const newLang = i18n.language === "en" ? "tr" : "en";
-    i18n.changeLanguage(newLang);
+    i18n.changeLanguage(englishActive ? "tr" : "en");
   };
 
-  const navLinks = [
-    { name: t('nav.home'), href: "/" },
-    { name: t('nav.services'), href: "#services" },
-    { name: t('nav.about'), href: "#about" },
-    { name: t('nav.blog'), href: "#blog" },
-    { name: t('nav.contact'), href: "#contact" },
+  const navLinks: Array<{
+    name: string;
+    href: string;
+    external?: boolean;
+  }> = [
+    { name: t("nav.home"), href: "/" },
+    { name: t("nav.services"), href: "#services" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.contact"), href: "#contact" },
+    {
+      name: t("nav.instagram"),
+      href: business.socials.instagramUrl,
+      external: true,
+    },
   ];
+
+  const bookNow = (source: typeof CTA_SOURCE.NAVBAR_DESKTOP | typeof CTA_SOURCE.NAVBAR_MOBILE) => {
+    openWhatsApp(buildQuickWhatsAppUrl(source, undefined, lang), source);
+  };
 
   return (
     <nav
@@ -62,33 +75,35 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
         <Link href="/">
           <a className="text-2xl md:text-3xl font-serif font-bold text-primary tracking-tighter">
             Shining<span className="text-foreground">Beauty</span>
           </a>
         </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
+              {...(link.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
               className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors uppercase tracking-widest"
             >
               {link.name}
             </a>
           ))}
-          
+
           <div className="flex items-center gap-2 pl-4 border-l border-foreground/10">
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleLanguage}
               className="rounded-full hover:bg-primary/10 text-foreground w-10 h-10 font-medium"
+              aria-label={englishActive ? "Switch to Turkish" : "Switch to English"}
             >
-              {i18n.language === 'en' ? 'TR' : 'EN'}
+              {englishActive ? "TR" : "EN"}
             </Button>
 
             <Button
@@ -96,6 +111,7 @@ export function Navbar() {
               size="icon"
               onClick={toggleTheme}
               className="rounded-full hover:bg-primary/10 text-foreground"
+              aria-label="Toggle theme"
             >
               {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
             </Button>
@@ -103,35 +119,36 @@ export function Navbar() {
 
           <Button
             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6"
-            onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.NAVBAR_DESKTOP), CTA_SOURCE.NAVBAR_DESKTOP)}
+            onClick={() => bookNow(CTA_SOURCE.NAVBAR_DESKTOP)}
           >
-            {t('nav.bookNow')}
+            {t("nav.bookNow")}
           </Button>
         </div>
 
-        {/* Mobile Nav */}
         <div className="md:hidden flex items-center space-x-2">
           <Button
             variant="ghost"
             size="icon"
             onClick={toggleLanguage}
             className="rounded-full text-sm font-bold"
+            aria-label={englishActive ? "Switch to Turkish" : "Switch to English"}
           >
-            {i18n.language === 'en' ? 'TR' : 'EN'}
+            {englishActive ? "TR" : "EN"}
           </Button>
-          
+
           <Button
             variant="ghost"
             size="icon"
             onClick={toggleTheme}
             className="rounded-full"
+            aria-label="Toggle theme"
           >
             {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
           </Button>
-          
+
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" aria-label="Open menu">
                 <Menu size={24} />
               </Button>
             </SheetTrigger>
@@ -141,6 +158,9 @@ export function Navbar() {
                   <a
                     key={link.name}
                     href={link.href}
+                    {...(link.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     className="text-2xl font-serif font-medium text-foreground hover:text-primary transition-colors"
                   >
                     {link.name}
@@ -148,9 +168,9 @@ export function Navbar() {
                 ))}
                 <Button
                   className="w-full bg-primary text-primary-foreground rounded-full mt-4"
-                  onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.NAVBAR_MOBILE), CTA_SOURCE.NAVBAR_MOBILE)}
+                  onClick={() => bookNow(CTA_SOURCE.NAVBAR_MOBILE)}
                 >
-                  {t('nav.bookAppointment')}
+                  {t("nav.bookAppointment")}
                 </Button>
               </div>
             </SheetContent>

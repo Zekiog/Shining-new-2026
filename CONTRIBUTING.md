@@ -1,62 +1,53 @@
-# Contributing
+# Katkı
 
-Thanks for taking the time to contribute. This document explains how to
-report issues, propose changes, and submit pull requests that will be
-reviewed and merged quickly.
+Sorun bildirmek, değişiklik önermek ve çekme isteği göndermek için bu belge yeterlidir.
 
-## Code of Conduct
+## Davranış
 
-By participating in this project you agree to keep the interaction
-respectful, technical, and on-topic. Harassment, off-topic promotion, or
-deliberately hostile comments will be removed without notice.
+Katılım saygılı, teknik ve konunun içinde kalır. Taciz, konu dışı tanıtım ve kasıtlı düşmanca yorumlar bildirim olmadan kaldırılır.
 
-## Before opening an issue
+## Sorun açmadan önce
 
-1. Search existing issues (open + closed) for the same problem.
-2. Read the README and `docs/` (if any) — most setup questions are
-   already answered there.
-3. Try the latest `main`. Many reported issues are already fixed.
+1. Açık ve kapalı sorunlarda aynı kaydı arayın.
+2. README'yi okuyun. Kurulum sorularının çoğu orada yanıtlıdır.
+3. Son `main` dalını deneyin. Bildirilen birçok sorun kapanmış olabilir.
 
-## Reporting bugs
+## Hata bildirimi
 
-Use the **Bug report** issue template. Include:
+**Hata bildirimi** şablonunu kullanın. Ekleyin:
 
-- Reproduction steps (minimal, copy-pastable)
-- Expected vs actual behaviour
-- Environment (OS, language runtime version, relevant service versions)
-- Relevant logs / stack traces — redact secrets before pasting
+- Yeniden üretme adımları (kısa, kopyalanabilir)
+- Beklenen ve gerçekleşen davranış
+- Ortam (işletim sistemi, çalışma zamanı sürümü, ilgili servis sürümleri)
+- İlgili günlük ve yığın izi. Gizli anahtarları yapıştırmadan silin.
 
-## Proposing features
+## Özellik önerisi
 
-Use the **Feature request** issue template. Explain:
+**Özellik isteği** şablonunu kullanın. Yazın:
 
-- The problem you are trying to solve
-- The proposed solution (one sentence if possible)
-- Alternatives you considered
-- Whether you are willing to send a PR
+- Çözmek istediğiniz sorun
+- Önerilen çözüm (mümkünse tek cümle)
+- Düşündüğünüz alternatifler
+- Çekme isteği göndermeye hazır olup olmadığınız
 
-## Submitting a pull request
+## Çekme isteği
 
-1. Fork the repository and create a feature branch from `main`.
-2. Make focused commits. Each commit should compile / pass tests.
-3. Follow the existing code style. Run formatters and linters locally
-   before pushing.
-4. Add or update tests for behavioural changes.
-5. Update the README / docs if user-visible behaviour changes.
-6. Open a PR against `main` using the PR template. Fill in:
-   - **What** changed (one paragraph)
-   - **Why** (link the issue it closes, e.g. `Closes #42`)
-   - **How** to verify locally (commands, screenshots)
+1. Depoyu çatallayın ve `main` üzerinden bir dal açın.
+2. Odaklı kayıtlar oluşturun. Her kayıt derlenmeli ve testleri geçmelidir.
+3. Mevcut kod biçimine uyun. Göndermeden önce biçimlendirici ve linter çalıştırın.
+4. Davranış değişikliğine test ekleyin veya mevcut testi güncelleyin.
+5. Ziyaretçinin gördüğü davranış değişirse README'yi güncelleyin.
+6. `main` hedefine çekme isteği açın ve şablonu doldurun:
+   - **Ne** değişti (bir paragraf)
+   - **Neden** (kapattığı sorun, örneğin `Closes #42`)
+   - **Nasıl** doğrulanır (komutlar, ekran görüntüleri)
 
-CI must be green before a review is requested. The reviewer may ask for
-small follow-ups — these are not rejections.
+İnceleme istenmeden önce CI yeşil olmalıdır. Küçük düzeltme istekleri ret değildir.
 
-## Security issues
+## Güvenlik
 
-**Do not** open a public issue for security vulnerabilities. Follow the
-process in [SECURITY.md](./SECURITY.md) instead.
+Güvenlik açığı için herkese açık sorun açmayın. Süreç [SECURITY.md](./SECURITY.md) içindedir.
 
-## Licensing
+## Lisans
 
-By submitting a contribution you agree that it will be licensed under
-the same license as the repository (see `LICENSE`).
+Katkı, depo ile aynı lisans altındadır (`LICENSE`).
