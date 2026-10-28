@@ -1,24 +1,13 @@
 import { useEffect } from "react";
 
 /**
- * Google Search Console verification meta tag.
+ * Google Search Console doğrulama meta etiketi.
  *
- * Reads the verification token from `VITE_GOOGLE_SITE_VERIFICATION`.
- * When the env var is unset (dev builds, unconfigured production), no
- * tag is injected — the Search Console verification step is a one-off
- * per-site action and lives entirely in the business owner's hands.
+ * `VITE_GOOGLE_SITE_VERIFICATION` doluysa etiketi enjekte eder.
+ * Yoksa hiçbir şey eklemez.
  *
- * Two ways to provide the token:
- *   1. Recommended: HTML meta tag method. Paste the `content="..."`
- *      value Google shows you into the Netlify env var.
- *   2. Alternative: HTML file upload. Drop the file Google gives you
- *      into `public/` and it is served at `https://shining.icu/<name>.html`.
- *
- * After deploying with the token in place:
- *   - Visit https://search.google.com/search-console
- *   - Property: "URL prefix" -> https://shining.icu
- *   - Verification -> HTML tag -> click Verify
- *   - Sitemaps -> paste https://shining.icu/sitemap.xml -> Submit
+ * Canlı host: https://shining-beauty-wellness-kurtulus.netlify.app/
+ * Sitemap: https://shining-beauty-wellness-kurtulus.netlify.app/sitemap.xml
  */
 export function SearchConsoleVerification() {
   const token = (import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as string | undefined)?.trim();
@@ -38,4 +27,3 @@ export function SearchConsoleVerification() {
 
   return null;
 }
-

@@ -8,7 +8,7 @@
  * Why this exists:
  *  - Confirm a single verified phone number (E.164, no spaces, no plus).
  *  - Standardize how each CTA labels itself in the WhatsApp chat
- *    ("Kaynak: shining.icu iletişim formu", "Kaynak: navbar", etc.).
+ *    ("Kaynak: netlify iletişim formu", "Kaynak: navbar", vb.).
  *  - URL-encode messages safely (Turkish characters, emoji, line breaks).
  *  - Keep booking flow a pure client-side redirect -> zero backend load,
  *    zero spam surface, zero PII storage.

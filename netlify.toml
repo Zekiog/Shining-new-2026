@@ -2,29 +2,13 @@
   command = "npm run build"
   publish = "dist/public"
 
-# ── WWW → naked domain (301 kalici) ─────────────────────────────────────────
-[[redirects]]
-  from = "https://www.shining.icu/*"
-  to   = "https://shining.icu/:splat"
-  status = 301
-  force  = true
-
-# ── HTTP → HTTPS ─────────────────────────────────────────────────────────────
-[[redirects]]
-  from = "http://shining.icu/*"
-  to   = "https://shining.icu/:splat"
-  status = 301
-  force  = true
-
-# ── SPA catch-all ────────────────────────────────────────────────────────────
+# SPA catch-all. shining.icu redirects removed: domain is expired at Hostinger
+# and is not on Cloudflare nameservers. Canonical host is the Netlify URL.
 [[redirects]]
   from   = "/*"
   to     = "/index.html"
   status = 200
 
-# ════════════════════════════════════════════════════════════════════════════
-#  SECURITY + PERF HEADERS
-# ════════════════════════════════════════════════════════════════════════════
 [[headers]]
   for = "/*"
   [headers.values]
@@ -35,19 +19,27 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(self), payment=()"
     Cross-Origin-Opener-Policy   = "same-origin"
     Cross-Origin-Resource-Policy = "cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; frame-src https://www.google.com https://maps.google.com https://maps.googleapis.com; connect-src 'self' https://*.neon.tech https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com; worker-src blob:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; frame-src https://www.google.com https://maps.google.com https://maps.googleapis.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com; worker-src blob:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
     Content-Language = "tr"
     Vary = "Accept-Encoding, Accept-Language"
 
-# ── Static assets: 1 yil immutable cache ─────────────────────────────────────
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# ── Favicon, robots, sitemap ─────────────────────────────────────────────────
 [[headers]]
   for = "/favicon*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/apple-touch-icon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/og-image.jpg"
   [headers.values]
     Cache-Control = "public, max-age=86400"
 

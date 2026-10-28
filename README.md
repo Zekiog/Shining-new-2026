@@ -3,7 +3,8 @@
 Adana, Türkiye’deki **Shining Beauty Wellness** için pazarlama ve WhatsApp randevu sitesi. React istemci (`client/`) ile Express API (`server/`) aynı depoda durur.
 
 **Canlı site:** https://shining-beauty-wellness-kurtulus.netlify.app  
-`shining.icu` süresi dolu olduğu için kanonik adres şimdilik bu Netlify hostudur. Alan adı yenilenince DNS buraya bağlanır.
+
+`shining.icu` Hostinger’da süresi dolmuş durumda; Hostinger yenilemesi yapılmıyor. DNS hâlâ `ns1/ns2.dns-expired.com` ve TXT `This domain is expired at Hostinger!` — Cloudflare nameserver’larında değil. Cloudflare paneli bu alan adını yetkili yönetemez. Kanonik adres Netlify hostudur.
 
 ## Kimlik
 
