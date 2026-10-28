@@ -7,8 +7,10 @@
  * Enlem/boylam kapı ölçümü değildir (haritamap.com, 36.998608 / 35.319351).
  * Posta kodu Kurtuluş Mahallesi için 01130'dur.
  */
-const mapQuery =
-  "Kurtuluş Mahallesi, 64009 Sokak, Atakan Apartmanı B Blok Kat 1 No 2, Seyhan, Adana, Türkiye";
+const streetAddress =
+  "Kurtuluş Mahallesi, 64009 Sokak, Atakan Apartmanı B Blok Kat:1 No:2";
+
+const mapQuery = `${streetAddress}, 01130 Seyhan, Adana, Türkiye`;
 
 export const business = {
   name: "Shining Beauty Wellness",
@@ -24,7 +26,8 @@ export const business = {
   telephone: "+90 505 071 95 01",
   telephoneE164: "+905050719501",
   whatsappNumber: "905050719501",
-  email: "info@shining.icu",
+  /** Mailbox on shining.icu is offline while the domain is expired. Prefer WhatsApp. */
+  email: "",
   priceRange: "\u20ba\u20ba",
   description:
     "Adana Seyhan Kurtuluş Mahallesi'nde lüks spa, masaj, cilt bakımı ve wellness hizmetleri. Atakan Apartmanı B Blok, 64009 Sokak.",
@@ -33,8 +36,7 @@ export const business = {
     longitude: 35.319351,
   },
   address: {
-    streetAddress:
-      "Kurtuluş Mahallesi, 64009 Sokak, Atakan Apartmanı B Blok Kat:1 No:2",
+    streetAddress,
     postalCode: "01130",
     addressLocality: "Seyhan",
     addressRegion: "Adana",
@@ -51,6 +53,7 @@ export const business = {
     searchUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`,
     embedUrl: `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=17&hl=tr&output=embed`,
   },
+  image: "https://shining-beauty-wellness-kurtulus.netlify.app/og-image.jpg",
   openingHours: {
     weekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     opens: "10:00",

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MessageSquare } from "lucide-react";
+import { Phone, MessageSquare, MapPin } from "lucide-react";
 import {
   buildWhatsAppUrl,
   KNOWN_SERVICES,
@@ -31,8 +31,11 @@ const SERVICE_LABEL_KEY = {
  * basmadan veri sunucuya gitmez. Botlar için gizli bir bal küpü alanı vardır.
  */
 export function ContactForm() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const formRef = useRef<HTMLFormElement>(null);
+  const lang = (i18n.resolvedLanguage ?? i18n.language).toLowerCase().startsWith("en")
+    ? "en"
+    : "tr";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -113,6 +116,7 @@ export function ContactForm() {
         phone: formData.phone,
         preferredTime: formData.preferredTime || undefined,
         note: formData.note || undefined,
+        lang,
       });
       trackFormEvent("form_submit_success", { service: formData.service });
       openWhatsApp(url, CTA_SOURCE.CONTACT_FORM);
@@ -294,6 +298,22 @@ export function ContactForm() {
 
       <div className="mt-8 pt-8 border-t border-border/50 space-y-4">
         <a
+          href={business.maps.searchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-start gap-3 text-foreground/80 hover:text-primary transition-colors"
+          data-testid="contact-address"
+        >
+          <MapPin className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+          <span>
+            {business.address.lines[0]}
+            <br />
+            {business.address.lines[1]}
+            <br />
+            {business.address.lines[2]}
+          </span>
+        </a>
+        <a
           href={`tel:${WHATSAPP_DISPLAY.replace(/[^+\d]/g, "")}`}
           className="flex items-center gap-3 text-foreground/80 hover:text-primary transition-colors"
         >
@@ -301,14 +321,7 @@ export function ContactForm() {
           {WHATSAPP_DISPLAY}
         </a>
         <a
-          href={`mailto:${business.email}`}
-          className="flex items-center gap-3 text-foreground/80 hover:text-primary transition-colors"
-        >
-          <Mail className="w-5 h-5 text-primary" />
-          {business.email}
-        </a>
-        <a
-          href={buildWhatsAppUrl({ source: CTA_SOURCE.FOOTER })}
+          href={buildWhatsAppUrl({ source: CTA_SOURCE.FOOTER, lang })}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-3 text-foreground/80 hover:text-primary transition-colors"

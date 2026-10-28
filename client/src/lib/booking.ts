@@ -1,19 +1,6 @@
 /**
- * Centralized WhatsApp booking helper.
- *
- * Single source of truth for the business WhatsApp number and the
- * URL/messages used by every CTA on the site. The previous code scattered
- * `https://wa.me/905050719501` across 5 files with no source tagging.
- *
- * Why this exists:
- *  - Confirm a single verified phone number (E.164, no spaces, no plus).
- *  - Standardize how each CTA labels itself in the WhatsApp chat
- *    ("Kaynak: netlify iletişim formu", "Kaynak: navbar", vb.).
- *  - URL-encode messages safely (Turkish characters, emoji, line breaks).
- *  - Keep booking flow a pure client-side redirect -> zero backend load,
- *    zero spam surface, zero PII storage.
- *  - Emit `whatsapp_click` GA4 events with the source label so the
- *    business can attribute conversions in the analytics dashboard.
+ * Merkezi WhatsApp randevu yardımcısı.
+ * Tek doğrulanmış numara, kaynak etiketleri, Türkçe/İngilizce mesaj gövdesi.
  */
 
 import { trackWhatsAppClick } from "./analytics";
@@ -22,7 +9,6 @@ import { business } from "./business";
 export const WHATSAPP_NUMBER_E164 = business.whatsappNumber;
 export const WHATSAPP_DISPLAY = business.telephone;
 
-/** Allowed values for the optional `service` field in `BookingDraft`. */
 export const KNOWN_SERVICES = [
   "Genel randevu talebi",
   "Masaj",
@@ -33,10 +19,6 @@ export const KNOWN_SERVICES = [
 
 export type KnownService = (typeof KNOWN_SERVICES)[number];
 
-/**
- * Source labels that will be attached to the WhatsApp message so the
- * business can see where the click originated.
- */
 export const CTA_SOURCE = {
   NAVBAR_DESKTOP: "navbar (desktop CTA)",
   NAVBAR_MOBILE: "navbar (mobil CTA)",
@@ -50,71 +32,76 @@ export const CTA_SOURCE = {
 export type CtaSource = (typeof CTA_SOURCE)[keyof typeof CTA_SOURCE];
 
 export interface BookingDraft {
-  /** Where the click originated. */
   source: CtaSource;
-  /** Optional service the visitor is interested in. */
   service?: string;
-  /** Optional visitor-supplied data, only filled by the contact form. */
   name?: string;
   phone?: string;
   preferredTime?: string;
   note?: string;
+  /** Visitor UI language. Defaults to Turkish. */
+  lang?: string;
 }
 
 const formatLines = (lines: Array<string | undefined | false>): string =>
   lines.filter((l): l is string => Boolean(l && l.trim().length > 0)).join("\n");
 
-/**
- * Build a complete, URL-safe WhatsApp `wa.me` URL for the business.
- *
- * Usage:
- *   buildWhatsAppUrl({ source: CTA_SOURCE.NAVBAR_DESKTOP })
- *   buildWhatsAppUrl({
- *     source: CTA_SOURCE.CONTACT_FORM,
- *     service: "Masaj",
- *     name: "Ayşe",
- *     phone: "+90 555 ...",
- *     preferredTime: "Salı 16:00",
- *     note: "Aromaterapi tercih ediyorum",
- *   })
- */
+function isEnglish(lang?: string): boolean {
+  return Boolean(lang && lang.toLowerCase().startsWith("en"));
+}
+
 export function buildWhatsAppUrl(draft: BookingDraft): string {
+  const en = isEnglish(draft.lang);
   const lines = formatLines([
-    `Merhaba Shining Beauty & Wellness 👋`,
-    draft.service ? `Hizmet: ${draft.service}` : undefined,
-    draft.name ? `Ad Soyad: ${draft.name}` : undefined,
-    draft.phone ? `Telefon: ${draft.phone}` : undefined,
-    draft.preferredTime ? `Tercih edilen zaman: ${draft.preferredTime}` : undefined,
-    draft.note ? `Not: ${draft.note}` : undefined,
-    `Kaynak: ${draft.source}`,
+    en
+      ? "Hello Shining Beauty & Wellness 👋"
+      : "Merhaba Shining Beauty & Wellness 👋",
+    draft.service
+      ? en
+        ? `Service: ${draft.service}`
+        : `Hizmet: ${draft.service}`
+      : undefined,
+    draft.name
+      ? en
+        ? `Name: ${draft.name}`
+        : `Ad Soyad: ${draft.name}`
+      : undefined,
+    draft.phone
+      ? en
+        ? `Phone: ${draft.phone}`
+        : `Telefon: ${draft.phone}`
+      : undefined,
+    draft.preferredTime
+      ? en
+        ? `Preferred time: ${draft.preferredTime}`
+        : `Tercih edilen zaman: ${draft.preferredTime}`
+      : undefined,
+    draft.note
+      ? en
+        ? `Note: ${draft.note}`
+        : `Not: ${draft.note}`
+      : undefined,
+    en ? `Source: ${draft.source}` : `Kaynak: ${draft.source}`,
   ]);
 
   return `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${encodeURIComponent(lines)}`;
 }
 
-/**
- * Convenience for non-form CTAs (nav, hero, footer, floating). Builds a
- * short message with just the source tag.
- */
-export function buildQuickWhatsAppUrl(source: CtaSource, extra?: string): string {
+export function buildQuickWhatsAppUrl(
+  source: CtaSource,
+  extra?: string,
+  lang?: string,
+): string {
+  const en = isEnglish(lang);
   const lines = formatLines([
-    `Merhaba Shining Beauty & Wellness 👋`,
-    `Kaynak: ${source}`,
+    en
+      ? "Hello Shining Beauty & Wellness 👋"
+      : "Merhaba Shining Beauty & Wellness 👋",
+    en ? `Source: ${source}` : `Kaynak: ${source}`,
     extra,
   ]);
   return `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${encodeURIComponent(lines)}`;
 }
 
-/**
- * Open a WhatsApp URL in a new tab with `noopener` + `noreferrer`.
- *
- * Falls back to direct navigation if popups are blocked.
- *
- * `source` should be a `CtaSource` (or any stable string) and is
- * forwarded to GA4 as the `source` parameter of the `whatsapp_click`
- * conversion event. No-op when consent is denied or GA4 is not
- * configured.
- */
 export function openWhatsApp(url: string, source?: CtaSource): void {
   if (typeof window === "undefined") return;
   trackWhatsAppClick(source ?? "direct", {

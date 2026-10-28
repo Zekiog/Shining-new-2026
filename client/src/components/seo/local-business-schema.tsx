@@ -3,6 +3,12 @@ import { business } from "@/lib/business";
 
 export function LocalBusinessSchema() {
   useEffect(() => {
+    const sameAs = [
+      business.socials.instagramUrl,
+      business.socials.facebookUrl,
+      `https://wa.me/${business.whatsappNumber}`,
+    ].filter(Boolean);
+
     const schema = {
       "@context": "https://schema.org",
       "@type": ["BeautySalon", "HealthAndBeautyBusiness", "LocalBusiness"],
@@ -10,11 +16,12 @@ export function LocalBusinessSchema() {
       name: business.name,
       legalName: business.legalName,
       url: business.url,
+      image: business.image,
       telephone: business.telephone,
       priceRange: business.priceRange,
       currenciesAccepted: business.currency,
-      paymentAccepted: "Nakit, Kredi Kartı",
-      inLanguage: business.locale,
+      paymentAccepted: "Cash, Credit Card",
+      inLanguage: [business.locale, "en"],
       description: business.description,
       address: {
         "@type": "PostalAddress",
@@ -36,14 +43,11 @@ export function LocalBusinessSchema() {
         opens: business.openingHours.opens,
         closes: business.openingHours.closes,
       })),
-      sameAs: [
-        business.socials.instagramUrl,
-        `https://wa.me/${business.whatsappNumber}`,
-      ],
+      sameAs,
       contactPoint: {
         "@type": "ContactPoint",
         telephone: business.telephone,
-        contactType: "müşteri hizmetleri",
+        contactType: "customer service",
         availableLanguage: [business.locale, "en"],
         areaServed: [
           { "@type": "City", name: "Adana" },
@@ -57,15 +61,48 @@ export function LocalBusinessSchema() {
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Güzellik ve Spa Hizmetleri",
+        name: "Beauty and Spa Services",
         itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Spa Masajı", description: "Stres ve gerginliği azaltmak için geleneksel ve modern masaj terapileri." } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cilt Bakımı", description: "Işıltılı bir cilt için yenileyici bakımlar ve gelişmiş cilt tedavileri." } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Manikür & Pedikür", description: "Premium manikür, pedikür ve özel tırnak tasarım hizmetleri." } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Vücut Wellness", description: "Bütünsel vücut bakımları, peelingler ve detoks sargıları." } },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Spa Massage",
+              description: "Traditional and modern massage therapies to relieve stress and tension.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Skin Care",
+              description: "Rejuvenating facials and advanced skin treatments for a glowing complexion.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Manicure & Pedicure",
+              description: "Premium manicures, pedicures, and custom nail art.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Body Wellness",
+              description: "Holistic body treatments, peels, and detox wraps.",
+            },
+          },
         ],
       },
     };
+
+    if (business.email) {
+      Object.assign(schema, { email: business.email });
+    }
+
     const id = "local-business-schema";
     let el = document.getElementById(id) as HTMLScriptElement | null;
     if (!el) {

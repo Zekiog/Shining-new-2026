@@ -21,6 +21,7 @@ const resources = {
         about: "About",
         blog: "Blog",
         contact: "Contact",
+        instagram: "Instagram",
         bookNow: "Book Now",
         bookAppointment: "Book Appointment"
       },
@@ -174,6 +175,7 @@ const resources = {
         about: "Hakkımızda",
         blog: "Blog",
         contact: "İletişim",
+        instagram: "Instagram",
         bookNow: "Randevu Al",
         bookAppointment: "Randevu Al"
       },

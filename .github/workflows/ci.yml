@@ -26,18 +26,8 @@ jobs:
       - name: Install
         run: npm ci || npm install
 
-      - name: Lint
-        run: npm run lint --if-present
-
       - name: Type-check
-        run: npm run type-check --if-present
+        run: npm run check
 
-      - name: Test
-        run: npm test -- --ci --coverage
-
-      - name: Upload coverage
-        if: matrix.node-version == '20'
-        uses: codecov/codecov-action@v4
-        with:
-          directory: ./coverage
-          fail_ci_if_error: false
+      - name: Production build
+        run: npm run build

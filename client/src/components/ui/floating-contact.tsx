@@ -1,4 +1,4 @@
-import { Phone, MapPin, Share2, Instagram as InstagramIcon, Facebook, MessageCircle } from "lucide-react";
+import { MapPin, Share2, Instagram as InstagramIcon, Facebook, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -18,7 +18,10 @@ import { business } from "@/lib/business";
 
 export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.resolvedLanguage ?? i18n.language).toLowerCase().startsWith("en")
+    ? "en"
+    : "tr";
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -39,7 +42,12 @@ export function FloatingContact() {
                     <Button
                       size="icon"
                       className="h-12 w-12 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg"
-                      onClick={() => openWhatsApp(buildQuickWhatsAppUrl(CTA_SOURCE.FLOATING), CTA_SOURCE.FLOATING)}
+                      onClick={() =>
+                        openWhatsApp(
+                          buildQuickWhatsAppUrl(CTA_SOURCE.FLOATING, undefined, lang),
+                          CTA_SOURCE.FLOATING,
+                        )
+                      }
                     >
                       <MessageCircle className="h-5 w-5" />
                     </Button>

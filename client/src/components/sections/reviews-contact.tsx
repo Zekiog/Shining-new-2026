@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "./contact-form";
@@ -113,6 +113,30 @@ export function ReviewsAndContact() {
             </p>
           </div>
           <ContactForm />
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 pb-10">
+        <div className="mx-auto max-w-2xl rounded-2xl border border-border/60 bg-secondary/20 p-6 text-center">
+          <p className="mb-2 text-sm font-medium uppercase tracking-wide text-primary">
+            {t("info.location.title")}
+          </p>
+          <a
+            href={business.maps.searchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-start justify-center gap-2 text-foreground hover:text-primary transition-colors"
+            data-testid="map-address-banner"
+          >
+            <MapPin className="mt-1 h-5 w-5 shrink-0 text-primary" />
+            <span className="text-left font-serif text-lg leading-relaxed">
+              {business.address.lines[0]}
+              <br />
+              {business.address.lines[1]}
+              <br />
+              {business.address.lines[2]}
+            </span>
+          </a>
         </div>
       </div>
 
