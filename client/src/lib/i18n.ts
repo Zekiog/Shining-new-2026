@@ -92,7 +92,8 @@ const resources = {
         location: {
           title: "Location",
           addr1: "Kurtuluş Mahallesi, 64009 Sokak",
-          addr2: "Atakan Apartmanı B Blok Kat:1 No:2, 01130 Seyhan/Adana"
+          addr2: "Atakan Apartmanı B Blok Kat:1 No:2, 01130 Seyhan/Adana",
+          openMaps: "Open in Google Maps"
         },
         book: {
           title: "Book Online",
@@ -255,7 +256,8 @@ const resources = {
         location: {
           title: "Konum",
           addr1: "Kurtuluş Mahallesi, 64009 Sokak",
-          addr2: "Atakan Apartmanı B Blok Kat:1 No:2, 01130 Seyhan/Adana"
+          addr2: "Atakan Apartmanı B Blok Kat:1 No:2, 01130 Seyhan/Adana",
+          openMaps: "Google Haritalar’da aç"
         },
         book: {
           title: "Online Randevu",

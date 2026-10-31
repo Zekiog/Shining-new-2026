@@ -121,18 +121,49 @@ export function ReviewsAndContact() {
         </div>
       </div>
 
-      <div className="w-full h-[500px] relative group">
+      {/*
+        Coordinate embeds no longer show Google’s place card (and address-string
+        embeds resolve to the wrong building). Own overlay carries the business
+        name + NAP so the map area always labels Shining Beauty Wellness.
+      */}
+      <div className="relative w-full h-[500px] group" data-testid="map-panel">
         <iframe
           src={business.maps.embedUrl}
           width="100%"
           height="100%"
-          style={{ border: 0, filter: "grayscale(0.2)" }}
+          style={{ border: 0, filter: "grayscale(0.15)" }}
           allowFullScreen={true}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          className="w-full h-full"
+          className="h-full w-full"
           title={t("reviews.mapTitle")}
         />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-start p-3 sm:p-5">
+          <div
+            className="pointer-events-auto max-w-sm rounded-xl border border-border/70 bg-background/95 p-4 shadow-xl backdrop-blur-sm"
+            data-testid="map-place-card"
+          >
+            <p className="font-serif text-lg font-semibold text-foreground">
+              {business.name}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {business.address.lines[0]}
+              <br />
+              {business.address.lines[1]}
+              <br />
+              {business.address.lines[2]}
+            </p>
+            <a
+              href={business.maps.searchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+            >
+              <MapPin className="h-4 w-4 shrink-0" />
+              {t("info.location.openMaps")}
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
