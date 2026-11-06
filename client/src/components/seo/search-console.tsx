@@ -6,8 +6,8 @@ import { useEffect } from "react";
  * `VITE_GOOGLE_SITE_VERIFICATION` doluysa etiketi enjekte eder.
  * Yoksa hiçbir şey eklemez.
  *
- * Canlı host: https://shining-beauty-wellness-kurtulus.netlify.app/
- * Sitemap: https://shining-beauty-wellness-kurtulus.netlify.app/sitemap.xml
+ * Canlı host: https://shining-beauty-wellness.vercel.app/
+ * Sitemap: https://shining-beauty-wellness.vercel.app/sitemap.xml
  */
 export function SearchConsoleVerification() {
   const token = (import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as string | undefined)?.trim();
