@@ -1,10 +1,9 @@
 # Shining Beauty Wellness — robots.txt
-# Canlı host: shining-beauty-wellness-kurtulus.netlify.app
+# Canlı host: shining-beauty-wellness.vercel.app
 
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /.netlify/
 
 User-agent: Googlebot
 Allow: /
@@ -39,4 +38,4 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
-Sitemap: https://shining-beauty-wellness-kurtulus.netlify.app/sitemap.xml
+Sitemap: https://shining-beauty-wellness.vercel.app/sitemap.xml
