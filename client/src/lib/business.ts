@@ -27,7 +27,7 @@ const mapPinQuery = `${latitude},${longitude}+(${mapLabel})`;
 export const business = {
   name: "Shining Beauty Wellness",
   legalName: "Shining Beauty Wellness",
-  url: "https://shining-beauty-wellness-kurtulus.netlify.app/",
+  url: "https://shining-beauty-wellness.vercel.app/",
   locale: "tr-TR",
   htmlLang: "tr",
   ogLocale: "tr_TR",
@@ -72,7 +72,7 @@ export const business = {
     searchUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapPinQuery)}`,
     embedUrl: `https://maps.google.com/maps?q=${encodeURIComponent(mapPinQuery)}&z=17&hl=tr&output=embed`,
   },
-  image: "https://shining-beauty-wellness-kurtulus.netlify.app/og-image.jpg",
+  image: "https://shining-beauty-wellness.vercel.app/og-image.jpg",
   openingHours: {
     weekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     opens: "10:00",
