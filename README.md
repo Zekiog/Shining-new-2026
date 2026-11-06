@@ -2,9 +2,9 @@
 
 Marketing and WhatsApp booking site for **Shining Beauty Wellness** in Adana, Türkiye. React client (`client/`) ships as a static SPA; Express (`server/`) is for local development only.
 
-**Live site:** https://shining-beauty-wellness-kurtulus.netlify.app
+**Live site:** https://shining-beauty-wellness.vercel.app
 
-`shining.icu` is expired at Hostinger (NS `dns-expired.com`). It is not renewed. Canonical host is the Netlify URL above.
+`shining.icu` is expired at Hostinger (NS `dns-expired.com`). It is not renewed. Canonical host is the Vercel URL above.
 
 ## Identity
 
@@ -37,7 +37,7 @@ Address: Kurtuluş Mahallesi, 64009 Sokak, Atakan Apartmanı B Blok Kat:1 No:2, 
 | UI | React, TypeScript, Vite |
 | Components | Radix UI, Tailwind CSS |
 | Local API (dev) | Node.js, Express (ESM) — empty routes in production path |
-| Hosting | **Netlify** static publish of `dist/public` |
+| Hosting | **Vercel** static deploy of `dist/public` |
 
 ## Local run
 
@@ -61,10 +61,10 @@ Detection order in `client/src/lib/i18n.ts`:
 
 ## Deploy
 
-- **Netlify** — `netlify.toml`: `npm run build`, publish `dist/public`, SPA fallback to `index.html`. Production must track a branch that contains the Kurtuluş identity (or a manual `netlify deploy --prod --dir=dist/public --no-build` from that tree). Auto-publish from an older `main` will overwrite Kurtuluş content.
-- Booking never posts to a Netlify Function; the contact form opens WhatsApp.
+- **Vercel** — `vercel.json`: `vite build`, output `dist/public`, SPA rewrite to `index.html`. Production auto-deploys from `main` to shining-beauty-wellness.vercel.app.
+- Booking never posts to a server function; the contact form opens WhatsApp.
 
-Optional env (Netlify UI): `VITE_GA4_MEASUREMENT_ID`, `VITE_GOOGLE_SITE_VERIFICATION`.
+Optional env (Vercel → Project Settings → Environment Variables): `VITE_GA4_MEASUREMENT_ID`, `VITE_GOOGLE_SITE_VERIFICATION`.
 
 ## Human follow-ups
 
