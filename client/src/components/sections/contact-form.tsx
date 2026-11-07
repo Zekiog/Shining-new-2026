@@ -24,11 +24,11 @@ const SERVICE_LABEL_KEY = {
 } as const;
 
 /**
- * İletişim formu WhatsApp randevusuna gider.
- * Eski `/api/contacts` kaydı kalktı: statik yayında Express yoktu ve
- * form kişisel veriyi rıza kapısı olmadan tutuyordu.
- * Form, WhatsApp'ta hazır mesaj açar. Ziyaretçi uygulamada Gönder'e
- * basmadan veri sunucuya gitmez. Botlar için gizli bir bal küpü alanı vardır.
+ * Contact form opens a WhatsApp booking.
+ * `/api/contacts` is gone: the static host has no Express, and the form
+ * used to store personal data without a consent gate.
+ * WhatsApp opens a prefilled message. Nothing reaches a server until the
+ * visitor taps Send. Hidden honeypot field for bots.
  */
 export function ContactForm() {
   const { t, i18n } = useTranslation();

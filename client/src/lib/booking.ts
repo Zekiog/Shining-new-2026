@@ -1,6 +1,6 @@
 /**
- * Merkezi WhatsApp randevu yardımcısı.
- * Tek doğrulanmış numara, kaynak etiketleri, Türkçe/İngilizce mesaj gövdesi.
+ * Shared WhatsApp booking helper.
+ * One verified number, source tags, Turkish and English message bodies.
  */
 
 import { trackWhatsAppClick } from "./analytics";

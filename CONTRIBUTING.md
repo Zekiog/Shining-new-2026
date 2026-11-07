@@ -1,53 +1,53 @@
-# Katkı
+# Contributing
 
-Sorun bildirmek, değişiklik önermek ve çekme isteği göndermek için bu belge yeterlidir.
+Bug reports, change proposals, and pull requests go through this file.
 
-## Davranış
+## Conduct
 
-Katılım saygılı, teknik ve konunun içinde kalır. Taciz, konu dışı tanıtım ve kasıtlı düşmanca yorumlar bildirim olmadan kaldırılır.
+Stay respectful, technical, and on the subject. Harassment, off-topic promotion, and deliberate hostility are removed without notice.
 
-## Sorun açmadan önce
+## Before opening an issue
 
-1. Açık ve kapalı sorunlarda aynı kaydı arayın.
-2. README'yi okuyun. Kurulum sorularının çoğu orada yanıtlıdır.
-3. Son `main` dalını deneyin. Bildirilen birçok sorun kapanmış olabilir.
+1. Search open and closed issues for the same report.
+2. Read the README. Most setup questions are answered there.
+3. Try current `main`. A lot of reported bugs are already fixed.
 
-## Hata bildirimi
+## Bug report
 
-**Hata bildirimi** şablonunu kullanın. Ekleyin:
+Use the **Bug report** template. Include:
 
-- Yeniden üretme adımları (kısa, kopyalanabilir)
-- Beklenen ve gerçekleşen davranış
-- Ortam (işletim sistemi, çalışma zamanı sürümü, ilgili servis sürümleri)
-- İlgili günlük ve yığın izi. Gizli anahtarları yapıştırmadan silin.
+- Steps to reproduce (short, copyable)
+- Expected and actual behaviour
+- Environment (OS, runtime version, relevant service versions)
+- Logs and stack traces. Strip secrets before pasting.
 
-## Özellik önerisi
+## Feature request
 
-**Özellik isteği** şablonunu kullanın. Yazın:
+Use the **Feature request** template. Include:
 
-- Çözmek istediğiniz sorun
-- Önerilen çözüm (mümkünse tek cümle)
-- Düşündüğünüz alternatifler
-- Çekme isteği göndermeye hazır olup olmadığınız
+- The problem you want solved
+- A proposed solution (one sentence if you can)
+- Alternatives you considered
+- Whether you can open a pull request
 
-## Çekme isteği
+## Pull request
 
-1. Depoyu çatallayın ve `main` üzerinden bir dal açın.
-2. Odaklı kayıtlar oluşturun. Her kayıt derlenmeli ve testleri geçmelidir.
-3. Mevcut kod biçimine uyun. Göndermeden önce biçimlendirici ve linter çalıştırın.
-4. Davranış değişikliğine test ekleyin veya mevcut testi güncelleyin.
-5. Ziyaretçinin gördüğü davranış değişirse README'yi güncelleyin.
-6. `main` hedefine çekme isteği açın ve şablonu doldurun:
-   - **Ne** değişti (bir paragraf)
-   - **Neden** (kapattığı sorun, örneğin `Closes #42`)
-   - **Nasıl** doğrulanır (komutlar, ekran görüntüleri)
+1. Fork the repo and branch from `main`.
+2. Keep commits focused. Each commit should build and pass tests.
+3. Match the existing code style. Run the formatter and linter before you send it.
+4. Add or update a test when behaviour changes.
+5. Update the README if what the visitor sees changes.
+6. Open the pull request against `main` and fill in the template:
+   - **What** changed (one paragraph)
+   - **Why** (issue it closes, for example `Closes #42`)
+   - **How** to verify (commands, screenshots)
 
-İnceleme istenmeden önce CI yeşil olmalıdır. Küçük düzeltme istekleri ret değildir.
+CI should be green before you ask for review. Small follow-up fixes are fine.
 
-## Güvenlik
+## Security
 
-Güvenlik açığı için herkese açık sorun açmayın. Süreç [SECURITY.md](./SECURITY.md) içindedir.
+Do not open a public issue for a vulnerability. See [SECURITY.md](./SECURITY.md).
 
-## Lisans
+## License
 
-Katkı, depo ile aynı lisans altındadır (`LICENSE`).
+Contributions use the same license as the repo (`LICENSE`).

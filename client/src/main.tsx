@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './lib/i18n'; // App'ten önce: ilk çizimde dil tr-TR olsun
+import './lib/i18n'; // before App, so the first paint is tr-TR
 import App from './App';
 import { initAnalytics } from './lib/analytics';
 import './index.css';
 
-// Analitik hatası ilk çizimi kesmez.
+// An analytics error must not block the first paint.
 try {
   initAnalytics();
 } catch (e) {
-  // Analitik düşerse uygulama yine açılır.
+  // If analytics throws, the app still opens.
 }
 
 const rootElement = document.getElementById('root');
