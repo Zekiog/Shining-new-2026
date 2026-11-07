@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-/** Ziyaretçi dili çerezi. Tarayıcı veya işletim sistemi dili okunmaz. */
+/** Visitor language cookie. Browser and OS language are not read. */
 const LOCALE_COOKIE = "shining_dil";
 
 function applyDocumentLocale(language: string) {
@@ -353,8 +353,8 @@ i18n
     nonExplicitSupportedLngs: false,
     load: "languageOnly",
     detection: {
-      // navigator yok: Norveç'teki bir makine nb/no veya en dayatamaz.
-      // Sıra: açık ?lang=, sonra ziyaretçi çerezi, sonra <html lang="tr">.
+      // No navigator lookup: a machine in Norway must not force nb/no or en.
+      // Order: explicit ?lang=, then the visitor cookie, then <html lang="tr">.
       order: ["querystring", "cookie", "htmlTag"],
       lookupQuerystring: "lang",
       lookupCookie: LOCALE_COOKIE,

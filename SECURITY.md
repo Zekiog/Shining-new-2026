@@ -1,51 +1,51 @@
-# Güvenlik ilkesi
+# Security policy
 
-## Desteklenen sürümler
+## Supported versions
 
-Güvenlik güncellemesi alan sürümler:
+Versions that get security updates:
 
-| Sürüm | Destek |
+| Version | Support |
 |---|---|
-| `main` | Etkin |
-| Son etiketli sürüm | Etkin |
-| Daha eski sürümler | Yalnızca olanak ölçüsünde |
+| `main` | Active |
+| Latest tagged release | Active |
+| Older versions | Best effort only |
 
-## Açık bildirme
+## Reporting a vulnerability
 
-**Güvenlik açığı için herkese açık bir GitHub sorunu açmayın.**
+**Do not open a public GitHub issue for a security vulnerability.**
 
-Aşağıdaki kanallardan biriyle özel bildirin. Yeniden üretmek ve etkiyi ölçmek için yeterli bilgi verin:
+Report it privately on one of the channels below. Include enough to reproduce it and judge the impact:
 
-- Sorunun ve etkilenen bileşenin veya dosyanın açık tarifi
-- Yeniden üretme adımları veya küçük bir kanıt
-- Etki: bir saldırgan ne elde edebilir
-- Gerekirse ortam (işletim sistemi, çalışma zamanı sürümü)
+- A clear description of the issue and the affected component or file
+- Steps to reproduce, or a small proof
+- Impact: what an attacker could get
+- Environment, if it matters (OS, runtime version)
 
-### Özel kanallar
+### Private channels
 
-- **GitHub özel güvenlik bildirimi:** deponun *Security* sekmesindeki *Report a vulnerability* düğmesi. Bu, yalnız bakımcıların gördüğü özel bir danışma açar.
-- **E-posta:** bakımcı profilindeki güvenlik iletişimi. PGP zorunlu değildir; sunuluyorsa şifreli ileti kabul edilir.
+- **GitHub private vulnerability report:** *Report a vulnerability* on this repo's *Security* tab. That opens a private advisory only maintainers can see.
+- **Email:** the security contact on the maintainer profile. PGP is not required. Encrypted mail is accepted if a key is published.
 
-**5 iş günü** içinde alındı bilgisi bekleyin.
+Expect an acknowledgement within **5 business days**.
 
-## Bildirimden sonra
+## After a report
 
-1. 5 iş günü içinde sınıflandırma: alındı onayı ve şiddet (Kritik / Yüksek / Orta / Düşük).
-2. Yüksek ve Kritik kayıtlarda 10 iş günü içinde yama veya geçici çözüm takvimi.
-3. Düzeltme yayınlanınca GitHub üzerinde eşgüdümlü bir danışma çıkar. İstemediğiniz sürece adınız yazılır.
-4. Yeniden üretilemezse veya güvenlik kaydı sayılmazsa gerekçe ayrıca iletilir.
+1. Triage within 5 business days: acknowledgement and severity (Critical / High / Medium / Low).
+2. For High and Critical, a patch or workaround timeline within 10 business days.
+3. When a fix ships, a coordinated advisory is published on GitHub. Your name is included unless you ask otherwise.
+4. If it cannot be reproduced, or it is not a security issue, the reason is sent separately.
 
-## Kapsam
+## Scope
 
-Kapsam içi: bu deponun kaynak kodu, varsayılan yapılandırma, CI akışları ve belgelenmiş dağıtım yolları.
+In scope: this repo's source, default configuration, CI workflows, and documented deploy paths.
 
-Kapsam dışı:
+Out of scope:
 
-- Üst bağımlılıklardaki açıklar (ilgili projeye bildirin)
-- Yalnızca fiziksel veya yerel makine erişimi gerektiren durumlar
-- Bakımcıya yönelik sosyal mühendislik veya hizmet dışı bırakma
-- Somut bir saldırı yolu olmayan kuramsal bulgular
+- Bugs in upstream dependencies (report those to the project that owns them)
+- Issues that need only physical or local-machine access
+- Social engineering of maintainers, or denial of service
+- Theoretical findings with no concrete attack path
 
-## Sertleştirme notları
+## Hardening notes
 
-Tasarım kararları için depoda varsa `HARDENING_NOTES.md` dosyasına bakın.
+See `HARDENING_NOTES.md` if that file is in the repo.

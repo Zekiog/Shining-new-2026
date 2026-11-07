@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
 /**
- * Google Search Console doğrulama meta etiketi.
+ * Google Search Console verification meta tag.
  *
- * `VITE_GOOGLE_SITE_VERIFICATION` doluysa etiketi enjekte eder.
- * Yoksa hiçbir şey eklemez.
+ * Injects the tag when `VITE_GOOGLE_SITE_VERIFICATION` is set.
+ * Adds nothing when it is empty.
  *
- * Canlı host: https://shining-beauty-wellness.vercel.app/
+ * Live host: https://shining-beauty-wellness.vercel.app/
  * Sitemap: https://shining-beauty-wellness.vercel.app/sitemap.xml
  */
 export function SearchConsoleVerification() {
