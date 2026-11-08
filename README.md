@@ -1,6 +1,6 @@
 # Shining Beauty Wellness
 
-Marketing and WhatsApp booking site for **Shining Beauty Wellness** in Adana, Türkiye. React client (`client/`) ships as a static SPA; Express (`server/`) is for local development only.
+Marketing and WhatsApp booking site for **Shining Beauty Wellness** in Adana, Turkey. React client (`client/`) ships as a static SPA; Express (`server/`) is for local development only.
 
 **Live site:** https://shining-beauty-wellness.vercel.app
 
@@ -12,7 +12,7 @@ Canonical identity is the business location. Developer OS language or timezone d
 
 | Field | Value |
 |---|---|
-| Market | Adana, Türkiye |
+| Market | Adana, Turkey |
 | Primary language | `tr-TR` |
 | Secondary language | `en` via `?lang=en` or the nav language toggle |
 | Time zone | `Europe/Istanbul` |
